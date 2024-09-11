@@ -3,15 +3,17 @@
         targetNamespace="http://univ-grenoble-alpes.fr:miage/CabinetInfirmier"
         xmlns:ci="http://univ-grenoble-alpes.fr:miage/CabinetInfirmier">
 
+    <!--*****************************       Implementation des Complex Type       *****************************-->
+    
     <!-- Type Cabinet  -->
 
     <complexType name="Cabinet">
         <sequence>
-            <element name="nom" type="ci:Nom" maxOccurs="20"/>  <!-- A changer le nombre d'occurence peut être un attribut ? -->
-            <element name="infirmiers" type="ci:Infirmiers" maxOccurs="20"/>
-            <element name="patients" type="ci:Patients" maxOccurs="20"/>
+            <element name="nom" type="ci:Nom"/>  
+            <element name="infirmiers" type="ci:Infirmiers"/>
+            <element name="patients" type="ci:Patients"/>
         </sequence>
-        <attribute name="adresse" type="ci:Adresse" use="required"/>  <!-- Occurence à rajouter ? -->
+        <attribute name="adresse" type="ci:Adresse" use="required"/> 
     </complexType>
 
     <!-- Type Infirmiers -->
@@ -22,14 +24,14 @@
         </sequence>
     </complexType>
 
-    <!-- Type Infirmier*******************************(A revoir)*******************************-->
+    <!-- Type Infirmier  -->
 
     <complexType name="Infirmier">
         <sequence>
             <element name="id" type="ci:Id"/>
         </sequence>
         <attribute name="nom" type="ci:Nom" use="required"/>
-        <attribute name="prenom" type="ci:Prenom" use="required"/>
+        <attribute name="prenom" type="ci:Nom" use="required"/>
         <attribute name="photo" type="ci:Photo" use="optional"/>
     </complexType>
 
@@ -37,8 +39,8 @@
 
     <complexType name="Adresse">
         <sequence>
-            <element name="numero" type="ci:Numero"/>
-            <element name="rue" type="ci:Num_Rue"/>
+            <element name="numero" type="ci:Num_Rue"/>
+            <element name="rue" type="ci:Rue"/>
             <element name="codePostal" type="ci:Postal"/>
         </sequence>
         <attribute name="ville" type="ci:Nom" use="optional"/>
@@ -49,21 +51,21 @@
 
     <complexType name="Patients">
         <sequence>
-            <element name="patient" type="ci:Patient"/>
+            <element name="patient" type="ci:Patient" maxOccurs="50"/>
         </sequence>
     </complexType>
 
-    <!-- Type Patient*******************************(A revoir)*******************************-->
+    <!-- Type Patient -->
 
     <complexType name="Patient">
         <sequence>
             <element name="nom" type="ci:Nom"/>
-            <element name="prenom" type="ci:Prenom"/>
+            <element name="prenom" type="ci:Nom"/>
             <element name="numero" type="ci:Secu"/>
             <element name="visite" type="ci:Visite"/>
         </sequence>
         <attribute name="sexe" type="ci:Sexe" use="required"/>
-        <attribute name="naissance" type="ci:Naissance" use="required"/>
+        <attribute name="naissance" type="ci:Date" use="required"/>
         <attribute name="adresse" type="ci:Adresse" use="optional"/>
     </complexType>
 
@@ -71,42 +73,115 @@
 
     <complexType name="Visite">
         <sequence>
-            <element name="date" type="Date"/>
-            <element name="intervenant" type="Id"/>
+            <element name="date" type="ci:Date"/>
+            <element name="intervenant" type="ci:Id"/>
         </sequence>
-        <attribute name="acte" type="Acte" use="required"/>
+        <attribute name="acte" type="ci:Acte" use="required"/>
     </complexType>
 
     <!-- Type Acte -->
 
     <complexType name="Acte">
         <sequence>
-            <element name="id" type="Id"/>
+            <element name="id" type="ci:Id"/>
         </sequence>
     </complexType>
 
 
-    <!-- Simple Type Nom -->
-
-    <!-- Simple Type Prenom -->
-
-    <!-- Simple Type Id -->
-
-    <!-- Simple Type Photo -->
-
-    <!-- Simple Type Numero -->
-
-    <!-- Simple Type Num_Rue -->
-
-    <!-- Simple Type Postal -->
-
-    <!-- Simple Type Naissance -->
-
-    <!-- Simple Type Sexe -->
-
-    <!-- Simple Type Date -->
+    <!--*****************************       Implementation des Simple Type       *****************************-->
     
-    <!-- Simple Type Secu -->
+    
+    <!-- Type Nom -->
+    
+    <!-- Un Nom commence forcément par une majuscule puis peut être aussi grand que l'on veut. -->
+    <!-- Un Nom peu être un nom de ville, un prénom, un nom de famille ou encore un nom de cabinet. -->
+    <simpleType name="Nom">
+        <restriction base="string">
+            <pattern value="[A-Z][a-z]*"/>
+        </restriction>
+    </simpleType>
 
+    
+    <!-- Type Id -->
+    
+    <!-- Un Id est un nombre à trois chiffres max qui peut représenter le numéro d'un étage d'immeuble, -->
+    <!-- le numéro d'un intervenant de cabinet, ou encore un numéro NGAP. -->
+    <simpleType name="Id">
+        <restriction base="int">
+            <pattern value="[0;999]"/>
+        </restriction>
+    </simpleType>
 
+    
+    <!-- Type Photo -->
+    
+    <!-- Une photo est une chaine de caractère qui commence par une majuscule et qui se termine par une extension ".png". -->
+    <simpleType name="Photo">
+        <restriction base="string">
+            <pattern value="[A-Z][a-z]*[.png]"/>  <!-- A revoir  (peut être en rajouter d'autre ? -->
+        </restriction>
+    </simpleType>
+
+    
+    <!-- Type Num_Rue -->
+    
+    <!-- Une Num_Rue représente un nombre à 5 chiffres max qui permet de trouver une maison ou un immeuble dans une rue. -->
+    <simpleType name="Num_Rue">
+        <restriction base="int">
+            <pattern value="[0;9999]"/>
+        </restriction>
+    </simpleType>
+
+    
+    <!-- Type Rue -->
+    
+    <!-- Une Rue est une chaine de caractère qui commence forcément par une majuscule et qui peut contenir -->
+    <!-- d'autre majuscule à l'intérieur même de la chaine. -->
+    <simpleType name="Rue">
+        <restriction base="string">
+            <pattern value="[A-Z][a-z;A-Z]*"/>  <!-- Faut pas mettre un ";" entre [a-z et A-Z] ? -->
+        </restriction>
+    </simpleType>
+
+    
+    <!-- Type Postal -->
+    
+    <!-- Un type Postal représente le code postal d'une ville, il est retranscrit en un nombre qui prend 5 chiffres max.-->
+    <simpleType name="Postal">
+        <restriction base="int">
+            <pattern value="[0;99999]"/>
+        </restriction>
+    </simpleType>
+
+    
+    <!-- Type Date -->
+    
+    <!-- Une Date est une chaine de caractère qui affiche une date sous le format "annee-mois-jour". -->
+    <simpleType name="Date">
+        <restriction base="string">
+            <pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+        </restriction>
+    </simpleType>
+
+    
+    <!-- Type Sexe -->
+    
+    <!-- Un Sexe représente le genre d'une personne, écris en un caractère où H->Homme, F->Femme et A->Aucun. -->
+    <simpleType name="Sexe">
+        <restriction base="string">
+            <enumeration value="M"/> <!-- Homme -->
+            <enumeration value="F"/> <!-- Femme -->
+            <enumeration value="A"/> <!-- Aucun -->
+        </restriction>
+    </simpleType>
+    
+    
+    <!-- Type Secu -->
+
+    <!-- Secu représente dans une chaine de caractère le numéro de sécurité social. -->
+    <simpleType name="Secu">
+        <restriction base="string">
+            <pattern value="[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})"/>
+        </restriction>
+    </simpleType>
 </schema>
