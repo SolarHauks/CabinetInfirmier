@@ -81,7 +81,7 @@
 
     <complexType name="Acte">
         <sequence>
-            <element name="id" type="Ngap"/>
+            <element name="id" type="Id"/>
         </sequence>
     </complexType>
 
@@ -105,8 +105,6 @@
     <!-- Simple Type Sexe -->
 
     <!-- Simple Type Date -->
-
-    <!-- Simple Type Ngap -->
     
     <!-- Simple Type Secu -->
 
