@@ -2,6 +2,8 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://univ-grenoble-alpes.fr:miage/CabinetInfirmier"
         xmlns:ci="http://univ-grenoble-alpes.fr:miage/CabinetInfirmier">
+    
+    <element name="cabinet" type="ci:Cabinet"/>
 
     <!--*****************************       Implementation des Complex Type       *****************************-->
     
@@ -9,12 +11,12 @@
 
     <complexType name="Cabinet">
         <sequence>
+            <element name="adresse" type="ci:Adresse"/>
             <element name="infirmiers" type="ci:Infirmiers"/>
             <element name="patients" type="ci:Patients"/>
         </sequence>
         <attribute name="nom" type="ci:Chaine" use="required"/> 
-        <!-- le nom du cabinet est une chaine (ex : Soins à Grenoble) -->
-        <attribute name="adresse" type="ci:Adresse" use="required"/> 
+        <!-- le nom du cabinet est une chaine (ex : Soins a Grenoble) -->
     </complexType>
 
     <!-- Type Infirmiers -->
@@ -40,11 +42,11 @@
 
     <complexType name="Adresse">
         <sequence>
-            <element name="numero" type="ci:Num_Rue"/>
             <element name="rue" type="ci:Chaine"/>
             <element name="codePostal" type="ci:Postal"/>
         </sequence>
-        <attribute name="ville" type="ci:Nom" use="optional"/> <!-- En attribut car info déjà dans le code postal -->
+        <attribute name="numero" type="ci:Num_Rue" use="optional"/> <!-- En attribut car pas forcément de numéro -->
+        <attribute name="ville" type="ci:Chaine" use="optional"/> <!-- En attribut car info déjà dans le code postal -->
         <attribute name="etage" type="ci:Nombre3" use="optional"/> <!-- En attribut car pas toujours nécessaire -->
     </complexType>
 
@@ -62,14 +64,14 @@
         <sequence>
             <element name="nom" type="ci:Nom"/>
             <element name="prenom" type="ci:Nom"/>
-            <element name="numero" type="ci:Secu"/>
-            <element name="visite" type="ci:Visite" maxOccurs="unbounded"/> <!-- Un patient peut avoir plusieurs visites -->
-            <!-- A VOIR : Peut etre passer par un type Visites ? --> 
             <element name="sexe" type="ci:Sexe"/>
             <element name="naissance" type="ci:Date"/>
             <element name="adresse" type="ci:Adresse"/>
+            <element name="visite" type="ci:Visite" maxOccurs="unbounded"/> <!-- Un patient peut avoir plusieurs visites -->
+            <!-- A VOIR : Peut etre passer par un type Visites ? -->
         </sequence>
-        <!-- Pas d'attribut car toutes les informations sont importantes dans le cadre d'un traitement de santé -->
+        <attribute name="secu" type="ci:Secu" use="optional"/> 
+        <!-- En attribut car on ne l'a pas forcément au moment de rentrer les données -->
     </complexType>
 
     <!-- Type Visite -->
@@ -81,14 +83,14 @@
         </sequence>
         <!-- Les 2 infos sont en attribut car caractérisent l'intervention et permet sa recherche -->
         <attribute name="date" type="ci:Date" use="required"/> 
-        <attribute name="intervenant" type="ci:Nombre3" use="required"/>
+        <attribute name="intervenant" type="ci:Nombre3" use="optional"/> <!-- optionnel car sera attribue dans un second temps -->
     </complexType>
 
     <!-- Type Acte -->
 
     <complexType name="Acte">
         <sequence>
-            <element name="Nombre3" type="ci:Nombre3"/> <!-- nature de l'acte -->
+            <element name="id" type="ci:Nombre3"/> <!-- nature de l'acte -->
         </sequence>
     </complexType>
 
@@ -146,7 +148,7 @@
     <!-- majuscules, minuscules et espaces. -->
     <simpleType name="Chaine">
         <restriction base="string">
-            <pattern value="[A-Z][a-zA-Z ]*"/>
+            <pattern value="[a-zA-Z ]*"/>
         </restriction>
     </simpleType>
 
