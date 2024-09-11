@@ -37,10 +37,10 @@
 
     <complexType name="Adresse">
         <sequence>
-            <element name="etage" type="ci:Etage"/>
+            <element name="etage" type="ci:Id"/>
             <element name="numero" type="ci:Numero"/>
-            <element name="rue" type="ci:Rue"/>
-            <element name="postal" type="ci:Postal"/>
+            <element name="rue" type="ci:Num_Rue"/>
+            <element name="codePostal" type="ci:Postal"/>
             <element name="ville" type="ci:Nom"/>
         </sequence>
     </complexType>
@@ -58,10 +58,11 @@
     <complexType name="Patient">
         <sequence>
             <element name="nom" type="ci:Nom"/>
-            <element name="sexe" type="ci:Sexe"/>
+            <element name="prenom" type="ci:Prenom"/>
+            <element name="numero" type="ci:Secu"/>
             <element name="visite" type="ci:Visite"/>
         </sequence>
-        <attribute name="prenom" type="ci:Prenom"/>
+        <attribute name="sexe" type="ci:Sexe"/>
         <attribute name="naissance" type="ci:Naissance"/>
         <attribute name="adresse" type="ci:Adresse"/>
     </complexType>
@@ -93,11 +94,9 @@
 
     <!-- Simple Type Photo -->
 
-    <!-- Simple Type Etage -->
-
     <!-- Simple Type Numero -->
 
-    <!-- Simple Type Rue -->
+    <!-- Simple Type Num_Rue -->
 
     <!-- Simple Type Postal -->
 
@@ -109,7 +108,7 @@
 
     <!-- Simple Type Ngap -->
     
-    <!-- Simple Simple Simple -->
+    <!-- Simple Type Secu -->
 
 
 </schema>
