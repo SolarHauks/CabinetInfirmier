@@ -52,6 +52,11 @@
             +id : NCAD
         }
         
+        class Test {
+            +id : Id
+            +date : Date
+            +resultat : Resultat
+        }
         
     }
 
