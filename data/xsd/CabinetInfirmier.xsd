@@ -9,10 +9,11 @@
 
     <complexType name="Cabinet">
         <sequence>
-            <element name="nom" type="ci:Nom"/>  
             <element name="infirmiers" type="ci:Infirmiers"/>
             <element name="patients" type="ci:Patients"/>
         </sequence>
+        <attribute name="nom" type="ci:Chaine" use="required"/> 
+        <!-- le nom du cabinet est une chaine (ex : Soins à Grenoble) -->
         <attribute name="adresse" type="ci:Adresse" use="required"/> 
     </complexType>
 
@@ -28,11 +29,11 @@
 
     <complexType name="Infirmier">
         <sequence>
-            <element name="id" type="ci:Id"/>
+            <element name="nom" type="ci:Nom"/>
+            <element name="prenom" type="ci:Nom"/>
         </sequence>
-        <attribute name="nom" type="ci:Nom" use="required"/>
-        <attribute name="prenom" type="ci:Nom" use="required"/>
-        <attribute name="photo" type="ci:Photo" use="optional"/>
+        <attribute name="id" type="ci:Nombre3" use="required"/> <!-- En attribut car sert à identifier l'infirmier -->
+        <attribute name="photo" type="ci:Photo" use="optional"/> <!-- En attribut car optionel -->
     </complexType>
 
     <!-- Type Adresse -->
@@ -40,11 +41,11 @@
     <complexType name="Adresse">
         <sequence>
             <element name="numero" type="ci:Num_Rue"/>
-            <element name="rue" type="ci:Rue"/>
+            <element name="rue" type="ci:Chaine"/>
             <element name="codePostal" type="ci:Postal"/>
         </sequence>
-        <attribute name="ville" type="ci:Nom" use="optional"/>
-        <attribute name="etage" type="ci:Id" use="optional"/>
+        <attribute name="ville" type="ci:Nom" use="optional"/> <!-- En attribut car info déjà dans le code postal -->
+        <attribute name="etage" type="ci:Nombre3" use="optional"/> <!-- En attribut car pas toujours nécessaire -->
     </complexType>
 
     <!-- Type Patients -->
@@ -62,28 +63,32 @@
             <element name="nom" type="ci:Nom"/>
             <element name="prenom" type="ci:Nom"/>
             <element name="numero" type="ci:Secu"/>
-            <element name="visite" type="ci:Visite"/>
+            <element name="visite" type="ci:Visite" maxOccurs="unbounded"/> <!-- Un patient peut avoir plusieurs visites -->
+            <!-- A VOIR : Peut etre passer par un type Visites ? --> 
+            <element name="sexe" type="ci:Sexe"/>
+            <element name="naissance" type="ci:Date"/>
+            <element name="adresse" type="ci:Adresse"/>
         </sequence>
-        <attribute name="sexe" type="ci:Sexe" use="required"/>
-        <attribute name="naissance" type="ci:Date" use="required"/>
-        <attribute name="adresse" type="ci:Adresse" use="optional"/>
+        <!-- Pas d'attribut car toutes les informations sont importantes dans le cadre d'un traitement de santé -->
     </complexType>
 
     <!-- Type Visite -->
 
     <complexType name="Visite">
         <sequence>
-            <element name="date" type="ci:Date"/>
-            <element name="intervenant" type="ci:Id"/>
+            <element name="acte" type="ci:Acte" maxOccurs="unbounded"/> 
+            <!-- Un patient peut avoir plusieurs actes lors d'une visite-->
         </sequence>
-        <attribute name="acte" type="ci:Acte" use="required"/>
+        <!-- Les 2 infos sont en attribut car caractérisent l'intervention et permet sa recherche -->
+        <attribute name="date" type="ci:Date" use="required"/> 
+        <attribute name="intervenant" type="ci:Nombre3" use="required"/>
     </complexType>
 
     <!-- Type Acte -->
 
     <complexType name="Acte">
         <sequence>
-            <element name="id" type="ci:Id"/>
+            <element name="Nombre3" type="ci:Nombre3"/> <!-- nature de l'acte -->
         </sequence>
     </complexType>
 
@@ -93,7 +98,7 @@
     
     <!-- Type Nom -->
     
-    <!-- Un Nom commence forcément par une majuscule puis peut être aussi grand que l'on veut. -->
+    <!-- Un Nom commence forcément par une majuscule puis peut être aussi long que l'on veut. -->
     <!-- Un Nom peu être un nom de ville, un prénom, un nom de famille ou encore un nom de cabinet. -->
     <simpleType name="Nom">
         <restriction base="string">
@@ -102,23 +107,24 @@
     </simpleType>
 
     
-    <!-- Type Id -->
+    <!-- Type Nombre3 -->
     
-    <!-- Un Id est un nombre à trois chiffres max qui peut représenter le numéro d'un étage d'immeuble, -->
+    <!-- Un Nombre3 est un nombre à trois chiffres max qui peut représenter le numéro d'un étage d'immeuble, -->
     <!-- le numéro d'un intervenant de cabinet, ou encore un numéro NGAP. -->
-    <simpleType name="Id">
+    <simpleType name="Nombre3">
         <restriction base="int">
-            <pattern value="[0;999]"/>
+            <maxInclusive value="999"/>
+            <minInclusive value="0"/>
         </restriction>
     </simpleType>
 
     
     <!-- Type Photo -->
     
-    <!-- Une photo est une chaine de caractère qui commence par une majuscule et qui se termine par une extension ".png". -->
+    <!-- Une photo est une chaine de caractère de la forme 'filename.extension' (parmis jpg, gif, png, svg). -->
     <simpleType name="Photo">
         <restriction base="string">
-            <pattern value="[A-Z][a-z]*[.png]"/>  <!-- A revoir  (peut être en rajouter d'autre ? -->
+            <pattern value="[a-zA-Z_-]+[.](jpg|JPG|gif|GIF|png|PNG|svg|SVG)"/>  <!-- A VOIR -->
         </restriction>
     </simpleType>
 
@@ -127,29 +133,30 @@
     
     <!-- Une Num_Rue représente un nombre à 5 chiffres max qui permet de trouver une maison ou un immeuble dans une rue. -->
     <simpleType name="Num_Rue">
-        <restriction base="int">
-            <pattern value="[0;9999]"/>
+        <restriction base="int">    
+            <maxInclusive value="99999"/>
+            <minInclusive value="1"/>
         </restriction>
     </simpleType>
 
     
-    <!-- Type Rue -->
+    <!-- Type Chaine -->
     
-    <!-- Une Rue est une chaine de caractère qui commence forcément par une majuscule et qui peut contenir -->
-    <!-- d'autre majuscule à l'intérieur même de la chaine. -->
-    <simpleType name="Rue">
+    <!-- Une Chaine est une chaine de caractère qui commence par une majuscule et qui peut contenir -->
+    <!-- majuscules, minuscules et espaces. -->
+    <simpleType name="Chaine">
         <restriction base="string">
-            <pattern value="[A-Z][a-z;A-Z]*"/>  <!-- Faut pas mettre un ";" entre [a-z et A-Z] ? -->
+            <pattern value="[A-Z][a-zA-Z ]*"/>
         </restriction>
     </simpleType>
 
     
     <!-- Type Postal -->
     
-    <!-- Un type Postal représente le code postal d'une ville, il est retranscrit en un nombre qui prend 5 chiffres max.-->
+    <!-- Un type Postal représente le code postal d'une ville, il est retranscrit en un nombre à 5 chiffres.-->
     <simpleType name="Postal">
-        <restriction base="int">
-            <pattern value="[0;99999]"/>
+        <restriction base="string">
+            <pattern value="[0-9]{5}"/>
         </restriction>
     </simpleType>
 
@@ -166,12 +173,12 @@
     
     <!-- Type Sexe -->
     
-    <!-- Un Sexe représente le genre d'une personne, écris en un caractère où H->Homme, F->Femme et A->Aucun. -->
+    <!-- Un Sexe représente le genre d'une personne, écris en un caractère où H->Homme, F->Femme et A->Autre. -->
     <simpleType name="Sexe">
         <restriction base="string">
             <enumeration value="M"/> <!-- Homme -->
             <enumeration value="F"/> <!-- Femme -->
-            <enumeration value="A"/> <!-- Aucun -->
+            <enumeration value="A"/> <!-- Autre -->
         </restriction>
     </simpleType>
     
