@@ -1,6 +1,6 @@
 @startuml
 
-    package http://www.univ-grenoble-alpes.fr/l3miage/medical {
+    package http://www-univ-grenoble-alpes-fr/l3miage/medical {
         class Cabinet {
             +nom : Nom
             +adresse : Adresse
