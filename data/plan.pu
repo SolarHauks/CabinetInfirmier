@@ -1,6 +1,6 @@
 @startuml
 
-    package cabinet {
+    package http://www.univ-grenoble-alpes.fr/l3miage/medical {
         class Cabinet {
             +nom : Nom
             +adresse : Adresse
@@ -24,7 +24,6 @@
         }
         
         class Patient {
-            +id : Id
             +nom : Nom
             +prenom : Nom
             +sexe : Sexe
@@ -49,19 +48,79 @@
         }
         
         class Acte {
-            +id : NCAD
+            +id : Id
         }
         
-        class Test {
-            +id : Id
-            +date : Date
-            +resultat : Resultat
+        
+        'Simple Types
+        class Nom {
+            +nom : String [A-Z][a-z]*
+        }
+        
+        class Id {
+            +id : Int [0;999]
+        }
+        
+        'A completer
+        class Photo {
+            +photo : String
+        }
+        
+        enum Sexe {
+            M
+            F
+            A
+        }
+        
+        class Date {
+            +date : String [0-9]{4}-[0-9]{2}-[0-9]{2}
+        }
+        
+        class Secu {
+            +numero : String [12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})
+        }
+        
+        class Num_Rue {
+            +numero : Int [1;9999]
+        }
+        
+        class Rue {
+            +rue : String [A-Z][a-zA-Z ]*
+        }
+        
+        class Postal {
+            +codePostal : Int [0;99999]
         }
         
     }
 
-Planning "0" *-- "many" Week
-Planning "0" *-- "many" Holidays
+'Relations entre les classes
+Cabinet *-- Infirmiers
+Infirmiers *-- Infirmier
+Cabinet *-- Patients
+Patients *-- Patient
+Patient *-- Visite
+Patient *-- Adresse
+Visite *-- Acte
 
+'Relations entre les classes et les types simples
+Cabinet *-- Nom
+Cabinet *-- Adresse
+Infirmier *-- Id
+Infirmier *-- Nom
+Infirmier *-- Photo
+Patient *-- Nom
+Patient *-- Sexe
+Patient *-- Date
+Patient *-- Secu
+Patient *-- Adresse
+Visite *-- Date
+Visite *-- Id
+Acte *-- Id
+Adresse *-- Num_Rue
+Adresse *-- Rue
+Adresse *-- Postal
+Adresse *-- Nom
+Adresse *-- Id
 
 @enduml
