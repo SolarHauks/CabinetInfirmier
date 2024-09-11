@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cabinet xmlns="http://univ-grenoble-alpes.fr:miage/CabinetInfirmier" 
+<cabinet xmlns="http://www.univ-grenoble-alpes.fr/l3miage/medical" 
          nom="Soins a Grenoble">
     <adresse ville="Grenoble" numero="60">
         <rue>rue de la Chimie</rue>
