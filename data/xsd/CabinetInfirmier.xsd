@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://univ-grenoble-alpes.fr:miage/CabinetInfirmier"
+        xmlns:ci="http://univ-grenoble-alpes.fr:miage/CabinetInfirmier">
+
+    <!-- Type Cabinet  -->
+
+    <complexType name="Cabinet">
+        <sequence>
+            <element name="nom" type="ci:Nom" maxOccurs="20"/>  <!-- A changer le nombre d'occurence peut être un attribut ? -->
+            <element name="infirmiers" type="ci:Infirmiers" maxOccurs="20"/>
+            <element name="patients" type="ci:Patients" maxOccurs="20"/>
+        </sequence>
+        <attribute name="adresse" type="ci:Adresse"/>  <!-- Occurence à rajouter ? -->
+    </complexType>
+
+    <!-- Type Infirmiers -->
+
+    <complexType name="Infirmiers">
+        <sequence>
+            <element name="infirmier" type="ci:Infirmier" maxOccurs="20"/>
+        </sequence>
+    </complexType>
+
+    <!-- Type Infirmier*******************************(A revoir)*******************************-->
+
+    <complexType name="Infirmier">
+        <sequence>
+            <element name="id" type="ci:Id"/>
+        </sequence>
+        <attribute name="nom" type="ci:Nom"/>
+        <attribute name="prenom" type="ci:Prenom"/>
+        <attribute name="photo" type="ci:Photo"/>
+    </complexType>
+
+    <!-- Type Adresse pour les infirmiers (A changer le nom -->
+
+    <complexType name="Adresse">
+        <sequence>
+            <element name="etage" type="ci:Etage"/>
+            <element name="numero" type="ci:Numero"/>
+            <element name="rue" type="ci:Rue"/>
+            <element name="postal" type="ci:Postal"/>
+            <element name="ville" type="ci:Nom"/>
+        </sequence>
+    </complexType>
+
+    <!-- Type Patients -->
+
+    <complexType name="Patients">
+        <sequence>
+            <element name="patient" type="ci:Patient"/>
+        </sequence>
+    </complexType>
+
+    <!-- Type Patient*******************************(A revoir)*******************************-->
+
+    <complexType name="Patient">
+        <sequence>
+            <element name="nom" type="ci:Nom"/>
+            <element name="sexe" type="ci:Sexe"/>
+            <element name="visite" type="ci:Visite"/>
+        </sequence>
+        <attribute name="prenom" type="ci:Prenom"/>
+        <attribute name="naissance" type="ci:Naissance"/>
+        <attribute name="adresse" type="ci:Adresse"/>
+    </complexType>
+
+    <!-- Type Visite -->
+
+    <complexType name="Visite">
+        <sequence>
+            <element name="date" type="Date"/>
+            <element name="intervenant" type="Id"/>
+        </sequence>
+        <attribute name="acte" type="Acte"/>
+    </complexType>
+
+    <!-- Type Acte -->
+
+    <complexType name="Acte">
+        <sequence>
+            <element name="id" type="Ngap"/>
+        </sequence>
+    </complexType>
+
+
+    <!-- Simple Type Nom -->
+
+    <!-- Simple Type Prenom -->
+
+    <!-- Simple Type Id -->
+
+    <!-- Simple Type Photo -->
+
+    <!-- Simple Type Etage -->
+
+    <!-- Simple Type Numero -->
+
+    <!-- Simple Type Rue -->
+
+    <!-- Simple Type Postal -->
+
+    <!-- Simple Type Naissance -->
+
+    <!-- Simple Type Sexe -->
+
+    <!-- Simple Type Date -->
+
+    <!-- Simple Type Ngap -->
+
+
+</schema>
