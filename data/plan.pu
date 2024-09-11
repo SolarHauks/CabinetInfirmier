@@ -1,0 +1,62 @@
+@startuml
+
+    package cabinet {
+        class Cabinet {
+            +nom : Nom
+            +adresse : Adresse
+            +infirmier : Infirmiers
+            +patients : Patients
+        }
+        
+        class Infirmiers {
+            +infirmier : Infirmier[]
+        }
+        
+        class Infirmier {
+            +id : Id
+            +nom : Nom
+            +prenom : Nom
+            +photo : Photo
+        }
+        
+        class Patients {
+            +patients : Patient[]
+        }
+        
+        class Patient {
+            +id : Id
+            +nom : Nom
+            +prenom : Nom
+            +sexe : Sexe
+            +naissance : Date
+            +numero : Secu
+            +adresse : Adresse
+            +visites : Visite[]
+        }
+        
+        class Adresse {
+            +etage : Id
+            +numero : Num_Rue
+            +rue : Rue
+            +ville : Nom
+            +codePostal : Postal
+        }
+        
+        class Visite {
+            +date : Date
+            +Intervenant : Id
+            +acte : Acte[]
+        }
+        
+        class Acte {
+            +id : NCAD
+        }
+        
+        
+    }
+
+Planning "0" *-- "many" Week
+Planning "0" *-- "many" Holidays
+
+
+@enduml

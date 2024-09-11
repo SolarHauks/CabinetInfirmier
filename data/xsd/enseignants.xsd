@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:ens="http://www.univ-grenoble-alpes.fr/enseignants"
+        targetNamespace="http://www.univ-grenoble-alpes.fr/enseignants">
+
+        <!-- Element racine -->
+        <element name="enseignants" type="ens:Enseignants"/>
+
+        <!-- Le type Enseignants contient une séquence d'"Enseignant"
+            ainsi que la filière et l'année dans laquelle ils enseignent.  
+        -->
+        <complexType name="Enseignants">
+                <sequence>
+                        <element name="enseignant" type="ens:Enseignant" maxOccurs="unbounded"/>
+                </sequence>
+                <attribute name="filiere" type="string"/>
+                <attribute name="annee" type="gYear"/>
+        </complexType>
+
+        <!-- Le type Enseignant contient un nom, un prénom et une spécialité
+            Il est identifié par une référence. 
+         -->
+        <complexType name="Enseignant">
+                <sequence>
+                        <element name="nom" type="ens:Denomination"/>
+                        <element name="prenom" type="ens:Denomination"/>
+                        <element name="specialite" type="ens:Specialite"/>
+                </sequence>
+                <attribute name="ref" type="string"/>
+        </complexType>
+
+        <!-- Le type Denomination contraint les noms et prénoms -->
+        <simpleType name="Denomination">
+                <restriction base="string">
+                        <pattern value="[A-Z][a-z]*"/>
+                </restriction>
+        </simpleType>
+
+        <!-- Le type Specialite contraint le choix des spécialités -->
+        <simpleType name="Specialite">
+                <restriction base="string">
+                        <enumeration value="APO"/>
+                        <enumeration value="FDD-XML"/>
+                        <enumeration value="IHM"/>
+                        <enumeration value="RO"/>
+                </restriction>
+        </simpleType>
+
+</schema>
