@@ -11,10 +11,10 @@
 
     <complexType name="Cabinet">
         <sequence>
+            <element name="nom" type="ci:Chaine"/>  <!-- le nom du cabinet est une chaine (ex : Soins a Grenoble) -->
             <element name="adresse" type="ci:Adresse"/>
             <element name="infirmiers" type="ci:Infirmiers"/>
             <element name="patients" type="ci:Patients"/>
-            <element name="nom" type="ci:Chaine"/>  <!-- le nom du cabinet est une chaine (ex : Soins a Grenoble) -->
         </sequence>
        
     </complexType>
