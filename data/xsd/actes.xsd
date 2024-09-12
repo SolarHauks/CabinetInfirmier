@@ -24,23 +24,17 @@
     
     <complexType name="Types">
         <sequence>
-            <element name="type" type="ci:Type" maxOccurs="unbounded"/>
+            <element name="type" maxOccurs="unbounded">
+                <complexType>
+                    <simpleContent>
+                        <extension base="string">
+                            <attribute name="id" type="ci:Chaine" use="required"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
         </sequence>
     </complexType>
-    
-    <!-- Type Type  -->
-    
-    <!-- Un Type doit avoir un id et un nom. -->
-    
-    <element name="Type">
-        <complexType>
-            <simpleContent>
-                <extension base="string">
-                    <attribute name="id" type="ci:Chaine" use="required">
-                </extension>
-            </simpleContent>
-        </complexType>
-    </element>
     
     <!-- Type Actes -->
     
@@ -48,22 +42,19 @@
     
     <complexType name="Actes">
         <sequence>
-            <element name="acte" type="ci:Acte" maxOccurs="unbounded"/>
+            <element name="acte" maxOccurs="unbounded">
+                <complexType>
+                    <simpleContent>
+                        <extension base="string">
+                            <attribute name="id" type="int" use="required"/>
+                            <attribute name="type" type="ci:Chaine" use="required"/>
+                            <attribute name="clé" type="ci:Chaine" use="required"/>
+                            <attribute name="coef" type="ci:Nombre" use="required"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
         </sequence>
-    </complexType>
-    
-    <!-- Type Acte  -->
-    
-    <!-- Un Acte doit avoir un id, un type, une clé, un coef et un nom. -->
-    
-    <complexType name="Acte">
-        <sequence>
-            <element name="nom" type="ci:Chaine"/>
-        </sequence>
-        <attribute name="id" type="ci:Chaine" use="required"/>
-        <attribute name="type" type="ci:Chaine" use="required"/>
-        <attribute name="clé" type="ci:Chaine" use="required"/>
-        <attribute name="coef" type="ci:Nombre" use="required"/>
     </complexType>
     
     <!--*****************************       Implementation des Simple Type       *****************************-->
