@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/medical"
-        xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical">
+        xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
+        elementFormDefault = "qualified" >
     
     <element name="cabinet" type="ci:Cabinet"/>
 
     <!--*****************************       Implementation des Complex Type       *****************************-->
     
     <!-- Type Cabinet  -->
-
+    
+    <!-- Un Cabinet à un nom de cabinet une adresse de location ainsi qu'une liste d'infirmiers qui y travaille 
+    et une liste de patients. -->
     <complexType name="Cabinet">
         <sequence>
+            <element name="nom" type="ci:Chaine"/>  <!-- le nom du cabinet est une chaine (ex : Soins a Grenoble) -->
             <element name="adresse" type="ci:Adresse"/>
             <element name="infirmiers" type="ci:Infirmiers"/>
             <element name="patients" type="ci:Patients"/>
-            <element name="nom" type="ci:Chaine"/>  <!-- le nom du cabinet est une chaine (ex : Soins a Grenoble) -->
         </sequence>
        
     </complexType>
 
     <!-- Type Infirmiers -->
-
+    
+    <!-- Infirmiers est une liste comprenant les information des infirmiers travaillant dans le cabinet. -->
     <complexType name="Infirmiers">
         <sequence>
             <element name="infirmier" type="ci:Infirmier" maxOccurs="20"/>
@@ -29,6 +33,7 @@
 
     <!-- Type Infirmier  -->
 
+    <!-- Un Infirmier doit avoir un nom et un prénom ainsi qu'un Id qui sert à l'identifier et peut avoir une photo. -->
     <complexType name="Infirmier">
         <sequence>
             <element name="nom" type="ci:Nom"/>
@@ -40,18 +45,21 @@
 
     <!-- Type Adresse -->
 
+    <!-- Une adresse à obligatoirement un nom de rue un codePostal et peut contenir des informations complémentaire, 
+    comme un numéro de rue, le nom de la ville et un étage. -->
     <complexType name="Adresse">
         <sequence>
+            <element name="étage" type="ci:Etage" minOccurs="0"/>
+            <element name="numéro" type="ci:Num_Rue" minOccurs="0"/>
             <element name="rue" type="ci:Chaine"/>
             <element name="codePostal" type="ci:Postal"/>
-            <element name="numéro" type="ci:Num_Rue" minOccurs="0"/>
             <element name="ville" type="ci:Chaine" minOccurs="0"/>
-            <element name="étage" type="ci:Nombre3" minOccurs="0"/>
         </sequence>
     </complexType>
 
     <!-- Type Patients -->
 
+    <!-- Patients contient une liste de patient étant pris en charge par le cabinet. -->
     <complexType name="Patients">
         <sequence>
             <element name="patient" type="ci:Patient" maxOccurs="50"/>
@@ -60,28 +68,32 @@
 
     <!-- Type Patient -->
 
+    <!-- Un patient à forcément un nom, un prénom, un genre, une date de naissance et une adresse, ils peuvent
+    avoir des visites (A savoir qu'ils peuvent ne pas avoir de visite du tout) ainsi qu'un numéro de sécurité social
+    (Peut être vide car on ne l'a pas forcément au moment de rentrer les données). -->
     <complexType name="Patient">
         <sequence>
             <element name="nom" type="ci:Nom"/>
             <element name="prénom" type="ci:Nom"/>
             <element name="sexe" type="ci:Sexe"/>
-            <element name="naissance" type="ci:Date"/>
-            <element name="adresse" type="ci:Adresse"/>
-            <element name="visite" type="ci:Visite" maxOccurs="unbounded"/> <!-- Un patient peut avoir plusieurs visites -->
+            <element name="naissance" type="date"/>
             <element name="numéro" type="ci:Secu" minOccurs="0"/> <!-- car on ne l'a pas forcément au moment de rentrer les données -->
+            <element name="adresse" type="ci:Adresse"/>
+            <element name="visite" type="ci:Visite" minOccurs="0" maxOccurs="unbounded"/> <!-- Un patient peut avoir plusieurs visites -->
             <!-- A VOIR : Peut etre passer par un type Visites ? -->
         </sequence>
     </complexType>
 
     <!-- Type Visite -->
 
+    <!-- -->
     <complexType name="Visite">
         <sequence>
             <element name="acte" type="ci:Acte" maxOccurs="unbounded"/> 
             <!-- Un patient peut avoir plusieurs actes lors d'une visite-->
         </sequence>
         <!-- Les 2 infos sont en attribut car caractérisent l'intervention et permet sa recherche -->
-        <attribute name="date" type="ci:Date" use="required"/> 
+        <attribute name="date" type="date" use="required"/> 
         <attribute name="intervenant" type="ci:Nombre3"/> <!-- optionnel car sera attribue dans un second temps -->
     </complexType>
 
@@ -101,7 +113,7 @@
     <!-- Un Nom peu être un nom de ville, un prénom, un nom de famille ou encore un nom de cabinet. -->
     <simpleType name="Nom">
         <restriction base="string">
-            <pattern value="[A-Z][a-z]+"/>
+            <pattern value="[A-Z][a-zéèêë]+"/>
         </restriction>
     </simpleType>
 
@@ -111,9 +123,8 @@
     <!-- Un Nombre3 est un nombre à trois chiffres max qui peut représenter le numéro d'un étage d'immeuble, -->
     <!-- le numéro d'un intervenant de cabinet, ou encore un numéro NGAP. -->
     <simpleType name="Nombre3">
-        <restriction base="int">
-            <maxInclusive value="999"/>
-            <minInclusive value="0"/>
+        <restriction base="string">
+            <pattern value="[0-9]{3}"/>
         </restriction>
     </simpleType>
 
@@ -158,17 +169,6 @@
             <pattern value="[0-9]{5}"/>
         </restriction>
     </simpleType>
-
-    
-    <!-- Type Date -->
-    
-    <!-- Une Date est une chaine de caractère qui affiche une date sous le format "annee-mois-jour". -->
-    <simpleType name="Date">
-        <restriction base="string">
-            <pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
-        </restriction>
-    </simpleType>
-
     
     <!-- Type Sexe -->
     
@@ -188,6 +188,17 @@
     <simpleType name="Secu">
         <restriction base="string">
             <pattern value="[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})"/>
+        </restriction>
+    </simpleType>
+    
+    <!-- Type Etage -->
+
+    <!-- Etage est un nombre qui représente l'étage à l'adresse indiqué
+    Il peut exister des personnes qui habite dans des immeubles à l'étage n°86 ou encore à l'étage n°-5 -->
+    <simpleType name="Etage">
+        <restriction base="int">
+            <minInclusive value="-999"/> <!-- Allez jusqu'à l'étage -999 permet de prendre large -->
+            <maxInclusive value="999"/> <!-- A VOIR -->
         </restriction>
     </simpleType>
 </schema>
