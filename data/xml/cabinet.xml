@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ca:cabinet xmlns:ca="http://www.univ-grenoble-alpes.fr/l3miage/medical"
-         nom="Soins a Grenoble">
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd "
+         >
+
+    <ca:nom>Soins a Grenoble</ca:nom>
     
     <ca:adresse>
         <ca:numéro>60</ca:numéro>
@@ -11,7 +15,7 @@
     
     <ca:infirmiers>
         
-        <ca:infirmier id="001">
+        <ca:infirmier id="001"> 
             <ca:photo>sarah.png</ca:photo>
             <ca:nom>Frechie</ca:nom>
             <ca:prénom>Sarah</ca:prénom>
