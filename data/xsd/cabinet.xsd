@@ -32,10 +32,10 @@
     <complexType name="Infirmier">
         <sequence>
             <element name="nom" type="ci:Nom"/>
-            <element name="prenom" type="ci:Nom"/>
+            <element name="prénom" type="ci:Nom"/>
+            <element name="photo" type="ci:Photo" minOccurs="0"/>
         </sequence>
         <attribute name="id" type="ci:Nombre3" use="required"/> <!-- En attribut car sert à identifier l'infirmier -->
-        <attribute name="photo" type="ci:Photo" use="optional"/> <!-- En attribut car optionel -->
     </complexType>
 
     <!-- Type Adresse -->
@@ -44,10 +44,10 @@
         <sequence>
             <element name="rue" type="ci:Chaine"/>
             <element name="codePostal" type="ci:Postal"/>
+            <element name="numéro" type="ci:Num_Rue" minOccurs="0"/>
+            <element name="ville" type="ci:Chaine" minOccurs="0"/>
+            <element name="étage" type="ci:Nombre3" minOccurs="0"/>
         </sequence>
-        <attribute name="numero" type="ci:Num_Rue" use="optional"/> <!-- En attribut car pas forcément de numéro -->
-        <attribute name="ville" type="ci:Chaine" use="optional"/> <!-- En attribut car info déjà dans le code postal -->
-        <attribute name="etage" type="ci:Nombre3" use="optional"/> <!-- En attribut car pas toujours nécessaire -->
     </complexType>
 
     <!-- Type Patients -->
@@ -63,15 +63,14 @@
     <complexType name="Patient">
         <sequence>
             <element name="nom" type="ci:Nom"/>
-            <element name="prenom" type="ci:Nom"/>
+            <element name="prénom" type="ci:Nom"/>
             <element name="sexe" type="ci:Sexe"/>
             <element name="naissance" type="ci:Date"/>
             <element name="adresse" type="ci:Adresse"/>
             <element name="visite" type="ci:Visite" maxOccurs="unbounded"/> <!-- Un patient peut avoir plusieurs visites -->
+            <element name="numéro" type="ci:Secu" minOccurs="0"/> <!-- car on ne l'a pas forcément au moment de rentrer les données -->
             <!-- A VOIR : Peut etre passer par un type Visites ? -->
         </sequence>
-        <attribute name="secu" type="ci:Secu" use="optional"/> 
-        <!-- En attribut car on ne l'a pas forcément au moment de rentrer les données -->
     </complexType>
 
     <!-- Type Visite -->
@@ -83,15 +82,13 @@
         </sequence>
         <!-- Les 2 infos sont en attribut car caractérisent l'intervention et permet sa recherche -->
         <attribute name="date" type="ci:Date" use="required"/> 
-        <attribute name="intervenant" type="ci:Nombre3" use="optional"/> <!-- optionnel car sera attribue dans un second temps -->
+        <attribute name="intervenant" type="ci:Nombre3"/> <!-- optionnel car sera attribue dans un second temps -->
     </complexType>
 
     <!-- Type Acte -->
 
     <complexType name="Acte">
-        <sequence>
-            <element name="id" type="ci:Nombre3"/> <!-- nature de l'acte -->
-        </sequence>
+        <attribute name="id" type="ci:Nombre3"/> <!-- nature de l'acte -->
     </complexType>
 
 
