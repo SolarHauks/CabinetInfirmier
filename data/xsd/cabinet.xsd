@@ -104,7 +104,7 @@
     <!-- Un Nom peu être un nom de ville, un prénom, un nom de famille ou encore un nom de cabinet. -->
     <simpleType name="Nom">
         <restriction base="string">
-            <pattern value="[A-Z][a-z]*"/>
+            <pattern value="[A-Z][a-z]+"/>
         </restriction>
     </simpleType>
 
@@ -148,7 +148,7 @@
     <!-- majuscules, minuscules et espaces. -->
     <simpleType name="Chaine">
         <restriction base="string">
-            <pattern value="[a-zA-Z ]*"/>
+            <pattern value="[a-zA-Z -]+"/>
         </restriction>
     </simpleType>
 
