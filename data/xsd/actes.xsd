@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace='http://www.univ-grenoble-alpes.fr/l3miage/actes'
+        xmlns:ci='http://www.univ-grenoble-alpes.fr/l3miage/actes'
+        elementFormDefault = "qualified" >
+    
+    <element name="ngap" type="ci:NGAP"/>
+    
+    <!--*****************************       Implementation des Complex Type       *****************************-->
+    
+    <!-- Type NGAP  -->
+    
+    <!-- Un NGAP à une liste de types d'actes et une liste d'actes. -->
+    <complexType name="NGAP">
+        <sequence>
+            <element name="types" type="ci:Types"/>
+            <element name="actes" type="ci:Actes"/>
+        </sequence>
+    </complexType>
+    
+    <!-- Type Types -->
+    
+    <!-- Types est une liste comprenant les types d'actes. -->
+    
+    <complexType name="Types">
+        <sequence>
+            <element name="type" type="ci:Type" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    
+    <!-- Type Type  -->
+    
+    <!-- Un Type doit avoir un id et un nom. -->
+    
+    <element name="Type">
+        <complexType>
+            <simpleContent>
+                <extension base="string">
+                    <attribute name="id" type="ci:Chaine" use="required">
+                </extension>
+            </simpleContent>
+        </complexType>
+    </element>
+    
+    <!-- Type Actes -->
+    
+    <!-- Actes est une liste comprenant les information des actes. -->
+    
+    <complexType name="Actes">
+        <sequence>
+            <element name="acte" type="ci:Acte" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    
+    <!-- Type Acte  -->
+    
+    <!-- Un Acte doit avoir un id, un type, une clé, un coef et un nom. -->
+    
+    <complexType name="Acte">
+        <sequence>
+            <element name="nom" type="ci:Chaine"/>
+        </sequence>
+        <attribute name="id" type="ci:Chaine" use="required"/>
+        <attribute name="type" type="ci:Chaine" use="required"/>
+        <attribute name="clé" type="ci:Chaine" use="required"/>
+        <attribute name="coef" type="ci:Nombre" use="required"/>
+    </complexType>
+    
+    <!--*****************************       Implementation des Simple Type       *****************************-->
+    
+    <!-- Type Chaine -->
+    
+    <!-- Chaine est une chaine de caractère. -->
+    
+    <simpleType name="Chaine">
+        <restriction base="string">
+            <pattern value="[a-zA-Z0-9\s]+"/>
+        </restriction>
+    </simpleType>
+    
+    <!-- Type Nombre -->
+    
+    <!-- Un Nombre est un nombre à trois chiffres max. -->
+    
+    <simpleType name="Nombre">
+        <restriction base="string">
+            <pattern value="[0-9.]{0,3}"/>
+        </restriction>
+    </simpleType>
+    
+</schema>
