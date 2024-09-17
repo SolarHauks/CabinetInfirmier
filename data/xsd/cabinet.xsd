@@ -2,9 +2,14 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/medical"
         xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
-        elementFormDefault = "qualified" >
+        elementFormDefault="qualified" >
     
-    <element name="cabinet" type="ci:Cabinet"/>
+    <element name="cabinet" type="ci:Cabinet">
+        <keyref name="infirmierExist" refer="ci:infirmierUnique">
+            <selector xpath="ci:patients/ci:patient/ci:visite"/>
+            <field xpath="@intervenant"/>
+        </keyref>
+    </element>
 
     <!--*****************************       Implementation des Complex Type       *****************************-->
     
@@ -16,10 +21,19 @@
         <sequence>
             <element name="nom" type="ci:Chaine"/>  <!-- le nom du cabinet est une chaine (ex : Soins a Grenoble) -->
             <element name="adresse" type="ci:Adresse"/>
-            <element name="infirmiers" type="ci:Infirmiers"/>
-            <element name="patients" type="ci:Patients"/>
+            <element name="infirmiers" type="ci:Infirmiers">
+                <unique name="infirmierUnique">
+                    <selector xpath="ci:infirmier"/>
+                    <field xpath="@id"/>
+                </unique>
+            </element>
+            <element name="patients" type="ci:Patients">
+                <unique name="patientUnique">
+                    <selector xpath="ci:patient"/>
+                    <field xpath="ci:numéro"/>
+                </unique>
+            </element>
         </sequence>
-       
     </complexType>
 
     <!-- Type Infirmiers -->
@@ -28,7 +42,7 @@
     <!-- On met le nombre d'infirmier en unbounded on suppose que le cabinet peut recruter autant d'infirmier qu'il le veut -->
     <complexType name="Infirmiers">
         <sequence>
-            <element name="infirmier" type="ci:Infirmier" maxOccurs="unbounded"/> 
+            <element name="infirmier" type="ci:Infirmier" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
 
@@ -64,7 +78,7 @@
     <!-- Type Patients -->
 
     <!-- Patients contient une liste de patient étant pris en charge par le cabinet. -->
-    <!-- On met le nombre de patient de cabinet en undounded, on suppose que le cabinet peut prendre en charge 
+    <!-- On met le nombre de patient de cabinet en unbounded, on suppose que le cabinet peut prendre en charge 
     autant de patient qu'il le veut. -->
     <complexType name="Patients">
         <sequence>
