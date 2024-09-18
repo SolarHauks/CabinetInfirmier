@@ -9,7 +9,7 @@
             <head>
                 <title> Cabinet Infirmier </title>
             </head>
-            <body>
+            <body> 
                 <h1> Nom du cabinet : </h1> <!-- <xsl:value-of select="//ci:cabinet/ci:nom"/> -->
                 <p> Il y a  infirmiers.</p> <!-- <xsl:value-of select="count(//ci:cabinet/ci:infirmier)"/> -->
             </body>
