@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Section premiere */
+#premiere {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#premiere #image {
+    display: flex;
+    justify-content: center;
+}
+
+#premiere #image img {
+    width: 200px;
+    height: 200px;
+    margin-right: 150px;
+}
+
+/* Section Formations */
+#formations {
+    margin-top: 50px;
+}
+
+#formations h2 {
+    text-align: center;
+}
+
+#formations table {
+    display: flex;
+    justify-content: center;
+    
+    margin-top: 20px;
+}
