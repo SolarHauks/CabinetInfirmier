@@ -118,6 +118,28 @@
             </ca:visite>
             
         </ca:patient>
+
+        <ca:patient>
+            <ca:nom>Pourferlavésel</ca:nom>
+            <ca:prénom>Vladimir</ca:prénom>
+            <ca:sexe>M</ca:sexe>
+            <ca:naissance>1942-12-30</ca:naissance>
+            <ca:numéro>198082205545842</ca:numéro>
+            <ca:adresse>
+                <ca:rue>Les morets</ca:rue>
+                <ca:codePostal>38112</ca:codePostal>
+                <ca:ville>Méaudre</ca:ville>
+            </ca:adresse>
+
+            <ca:visite date="2017-12-11" intervenant="001">
+                <ca:acte id="101"/>
+            </ca:visite>
+
+            <ca:visite date="2017-12-08" intervenant="001">
+                <ca:acte id="102"/>
+            </ca:visite>
+
+        </ca:patient>
         
     </ca:patients>
     

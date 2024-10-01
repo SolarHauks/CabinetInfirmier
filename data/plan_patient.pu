@@ -1,0 +1,46 @@
+@startuml
+
+    package Patients {
+        class Patient {
+            +nom : String
+            +prenom : String
+            +sexe : Sexe
+            +naissance : Date (YYYY-MM-DD)
+            +numeroSS : Int
+            +adresse : Adresse
+            +visites : Visite[]
+        }
+        
+        enum Sexe {
+            M
+            F
+            A
+        }
+        
+        class Visite {
+            +date : Date (YYYY-MM-DD)
+            +intervenant : Infirmier
+            +actes : String
+        }
+        
+        class Adresse {
+            +rue : String
+            +codePostal : Int
+            +ville : String
+        }
+        
+        class Infirmier {
+            +nom : String
+            +prenom : String
+        }
+    }
+
+'Relations entre les classes
+Patient *-- Visite
+Patient *-- Adresse
+Visite *-- Infirmier
+
+'Relations entre les classes et les types simples
+Patient *-- Sexe
+
+@enduml
