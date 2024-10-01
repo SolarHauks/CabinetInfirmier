@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/patient"
+        xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/patient"
+        elementFormDefault="qualified" >
+    
+    <element name="patient" type="ci:Patient"/>
+
+    <!--*****************************       Implementation des Complex Type       *****************************-->
+
+    <!-- Type Patient -->
+
+    <!-- Un patient à forcément un nom, un prénom, un genre, une date de naissance et une adresse, ils peuvent
+    avoir des visites (A savoir qu'ils peuvent ne pas avoir de visite du tout) ainsi qu'un ). -->
+    <complexType name="Patient">
+        <sequence>
+            <element name="nom" type="ci:Nom"/>
+            <element name="prénom" type="ci:Nom"/>
+            <element name="sexe" type="ci:Sexe"/>
+            <element name="naissance" type="date"/>
+            <!-- numéro de sécurité social (Peut être vide car on ne l'a pas forcément au moment de rentrer les données) -->
+            <element name="numéroSS" type="ci:Secu" minOccurs="0"/> 
+            <element name="adresse" type="ci:Adresse"/>
+            <!-- Un patient peut ne pas avoir de visite, tout comme il peut avoir une infinité de visite -->
+            <element name="visite" type="ci:Visite" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <!-- Type Adresse -->
+
+    <!-- Une adresse à obligatoirement un nom de rue un codePostal et peut contenir des informations complémentaire, 
+    comme un numéro de rue, le nom de la ville et un étage. -->
+    <complexType name="Adresse">
+        <sequence>
+            <!-- Il peut ne pas avoir d'étage, dans une maison sans étage par exemple -->
+            <element name="étage" type="ci:Etage" minOccurs="0"/>
+            <!-- Le numéro de la rue est complémentaire, il existe des rues sans numéro -->
+            <element name="numéro" type="ci:Num_Rue" minOccurs="0"/>
+            <element name="rue" type="ci:Chaine"/>
+            <element name="codePostal" type="ci:Postal"/>
+            <!-- Le nom de la ville est falcultatif, elle est déjà contenue dans le code postal-->
+            <element name="ville" type="ci:Chaine" minOccurs="0"/>
+        </sequence>
+    </complexType>
+
+    <!-- Type Visite -->
+
+    <!-- Une visite contient le numéro d'un intervenant du cabinet ainsi que la date de la visite et un acte A VOIR -->
+    <complexType name="Visite">
+        <sequence>
+            <!-- Un patient peut avoir plusieurs actes lors d'une visite -->
+            <element name="intervenant" type="ci:Intervenant"/>
+            <element name="acte" type="ci:Chaine" maxOccurs="unbounded"/>
+        </sequence>
+        <!-- Une visite prend une seul date -->
+        <attribute name="date" type="date" use="required"/>
+    </complexType>
+
+    <!-- Type Intervenant -->
+
+    <!-- Un intervenant continent le nom et le prénom de l'infirmier qui effectue la visite -->
+    <complexType name="Intervenant">
+        <sequence>
+            <element name="nom" type="ci:Nom"/>
+            <element name="prénom" type="ci:Nom"/>
+        </sequence>
+    </complexType>
+
+
+    <!--*****************************       Implementation des Simple Type       *****************************-->
+    
+    
+    <!-- Type Nom -->
+    
+    <!-- Un Nom commence forcément par une majuscule puis peut être aussi long que l'on veut. 
+    Il peut contenir des accents sur les lettres -->
+    <!-- Un Nom peu être un nom de ville, un prénom, un nom de famille ou encore un nom de cabinet. -->
+    <simpleType name="Nom">
+        <restriction base="string">
+            <pattern value="[A-Z][a-zéèêëîïôö]+"/>
+        </restriction>
+    </simpleType>
+    
+    <!-- Type Num_Rue -->
+    
+    <!-- Une Num_Rue représente un nombre à 1 ou 5 chiffres max qui permet de trouver une maison ou un immeuble dans une rue. -->
+    <simpleType name="Num_Rue">
+        <restriction base="int">    
+            <!-- Un Num_Rue se trouve entre le chiffre 1 et le nombre 99999 -->
+            <maxInclusive value="99999"/>
+            <minInclusive value="1"/>
+        </restriction>
+    </simpleType>
+
+    
+    <!-- Type Chaine -->
+    
+    <!-- Une Chaine est une chaine de caractère qui commence par une majuscule et qui peut contenir -->
+    <!-- majuscules, minuscules et espaces. -->
+    <simpleType name="Chaine">
+        <restriction base="string">
+            <!-- Il peut contenir des accents sur les lettres -->
+            <pattern value="[a-zA-Z -éèêëïîôö]+"/>
+        </restriction>
+    </simpleType>
+
+    
+    <!-- Type Postal -->
+    
+    <!-- Un type Postal représente le code postal d'une ville, il est retranscrit en un nombre à 5 chiffres.-->
+    <simpleType name="Postal">
+        <restriction base="string">
+            <pattern value="[0-9]{5}"/>
+        </restriction>
+    </simpleType>
+    
+    <!-- Type Sexe -->
+    
+    <!-- Un Sexe représente le genre d'une personne, écris en un caractère où H->Homme, F->Femme et A->Autre. -->
+    <simpleType name="Sexe">
+        <restriction base="string">
+            <enumeration value="M"/> <!-- Homme -->
+            <enumeration value="F"/> <!-- Femme -->
+            <enumeration value="A"/> <!-- Autre -->
+        </restriction>
+    </simpleType>
+    
+    
+    <!-- Type Secu -->
+
+    <!-- Secu représente dans une chaine de caractère le numéro de sécurité social. -->
+    <simpleType name="Secu">
+        <restriction base="string">
+            <pattern value="[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})"/>
+        </restriction>
+    </simpleType>
+    
+    <!-- Type Etage -->
+
+    <!-- Etage est un nombre qui représente l'étage à l'adresse indiqué
+    Il peut exister des personnes qui habite dans des immeubles à l'étage n°86 ou encore à l'étage n°-5 -->
+    <simpleType name="Etage">
+        <restriction base="int">
+            <minInclusive value="-999"/> <!-- Allez jusqu'à l'étage -999 permet de prendre large -->
+            <maxInclusive value="999"/> <!-- A VOIR -->
+        </restriction>
+    </simpleType>
+</schema>

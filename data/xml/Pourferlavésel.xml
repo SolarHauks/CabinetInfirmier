@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?><patient xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes" xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical">
-    <nom>Pourferlavésel</nom>
-    <prénom>Vladimir</prénom>
-    <sexe>M</sexe>
-    <naissance>1942-12-30</naissance>
-    <optionalElement>198082205545842</optionalElement>
-    <adresse>
-        <rue>Les morets</rue>
-        <codePostal>38112</codePostal>
-        <optionalElement>Méaudre</optionalElement>
-    </adresse>
-    <visite date="2017-12-11">
-        <intervenant>
-            <nom>Frechie</nom>
-            <prénom>Sarah</prénom>
-        </intervenant>
-        <actes>Prélèvement par ponction veineuse directe</actes>
-    </visite>
-    <visite date="2017-12-08">
-        <intervenant>
-            <nom>Frechie</nom>
-            <prénom>Sarah</prénom>
-        </intervenant>
-        <actes>Saignée</actes>
-    </visite>
-</patient>
+<?xml version="1.0" encoding="UTF-8"?><pat:patient xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes" xmlns:pat="http://www.univ-grenoble-alpes.fr/l3miage/patient" xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical">
+    <pat:nom>Pourferlavésel</pat:nom>
+    <pat:prénom>Vladimir</pat:prénom>
+    <pat:sexe>M</pat:sexe>
+    <pat:naissance>1942-12-30</pat:naissance>
+    <pat:numéroSS>198082205545842</pat:numéroSS>
+    <pat:adresse>
+        <pat:rue>Les morets</pat:rue>
+        <pat:codePostal>38112</pat:codePostal>
+        <pat:ville>Méaudre</pat:ville>
+    </pat:adresse>
+    <pat:visite date="2017-12-11">
+        <pat:intervenant>
+            <pat:nom>Frechie</pat:nom>
+            <pat:prénom>Sarah</pat:prénom>
+        </pat:intervenant>
+        <pat:acte>Prélèvement par ponction veineuse directe</pat:acte>
+    </pat:visite>
+    <pat:visite date="2017-12-08">
+        <pat:intervenant>
+            <pat:nom>Frechie</pat:nom>
+            <pat:prénom>Sarah</pat:prénom>
+        </pat:intervenant>
+        <pat:acte>Saignée</pat:acte>
+    </pat:visite>
+</pat:patient>
