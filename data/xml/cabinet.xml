@@ -52,8 +52,8 @@
                 <ca:ville>Grenoble</ca:ville>
             </ca:adresse>
             
-            <ca:visite date="2015-12-08" intervenant="004">
-                <ca:acte id="109"/>
+            <ca:visite date="2015-12-08" intervenant="001">
+                <ca:acte id="102"/>
             </ca:visite>
         </ca:patient>
         
