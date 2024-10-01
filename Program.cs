@@ -8,7 +8,7 @@ namespace CabinetInfirmier // Note: actual namespace depends on the project name
     {
         static void Main(string[] args)
         {
-            Validation.ValidateXmlFile("http://www.univ-grenoble-alpes.fr/l3miage/medical", "../../../data/xsd/cabinet.xsd", "../../../data/xml/cabinet.xml");
+            XMLUtils.ValidateXmlFile("http://www.univ-grenoble-alpes.fr/l3miage/medical", "../../../data/xsd/cabinet.xsd", "../../../data/xml/cabinet.xml");
         }
     }
 }

@@ -2,7 +2,7 @@ namespace CabinetInfirmier;
 using System.Xml;
 using System.Xml.Schema;
 
-public class Validation
+public class XMLUtils
 {
     public static Task ValidateXmlFile (string schemaNamespace, string xsdFilePath, string xmlFilePath) {
         var settings = new XmlReaderSettings();
