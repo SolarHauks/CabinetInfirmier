@@ -9,9 +9,11 @@
     <xsl:output method="html"/>
     
     <xsl:template match="/">
-        <html>
+        <html lang="fr">
             <head>
                 <title> Cabinet Infirmier </title>
+                <script type="text/javascript" src="../js/facture.js"/>
+                <link rel="stylesheet" href="../css/infirmiere.css"/>
             </head>
             <body> 
                 <div>
@@ -24,6 +26,7 @@
                             <th>Nom</th>
                             <th>Adresse</th>
                             <th>Liste des soins a effectuer</th>
+                            <th>Facturation</th>
                         </tr>
                         <xsl:apply-templates select="//ci:patient[ci:visite/@intervenant=$destinedId]"/>
                     </table>
@@ -38,6 +41,16 @@
             <td><xsl:value-of select="ci:prénom"/> <xsl:text> </xsl:text> <xsl:value-of select="ci:nom"/></td> 
             <td><xsl:value-of select="ci:adresse/ci:numéro"/> <xsl:text> </xsl:text> <xsl:value-of select="ci:adresse/ci:rue"/></td>
             <td><xsl:apply-templates select="ci:visite/ci:acte"/></td>
+            <td>
+                <xsl:element name="button">
+                    <xsl:attribute name="onclick">
+                        openFacture('<xsl:value-of select="ci:prénom"/>',
+                                    '<xsl:value-of select="ci:nom"/>',
+                                    '<xsl:value-of select="ci:visite/ci:acte"/>')
+                    </xsl:attribute >
+                    Facture
+                </xsl:element>
+            </td>
         </tr>
     </xsl:template>
     

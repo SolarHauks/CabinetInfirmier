@@ -1,7 +1,9 @@
-<html xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes" xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical">
+<html lang="fr" xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes" xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical">
     <head>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Cabinet Infirmier </title>
+        <script type="text/javascript" src="../js/facture.js"></script>
+        <link rel="stylesheet" href="../css/infirmiere.css">
     </head>
     <body>
         <div>
@@ -11,10 +13,16 @@
         <div>
             <table>
                 <tr>
-                    <th>Nom</th><th>Adresse</th><th>Liste des soins a effectuer</th>
+                    <th>Nom</th><th>Adresse</th><th>Liste des soins a effectuer</th><th>Facturation</th>
                 </tr>
                 <tr>
-                    <td>Yvon Alecole</td><td>50 avenue Felix Viallet</td><td>Saign&eacute;e</td>
+                    <td>Yvon Alecole</td><td>50 avenue Felix Viallet</td><td>Saign&eacute;e</td><td><button onclick="
+                        openFacture('Yvon',
+                                    'Alecole',
+                                    '')
+                    ">
+                    Facture
+                </button></td>
                 </tr>
             </table>
         </div>
