@@ -7,7 +7,7 @@
     <!-- Génère à partir des données du cabinet présente dans le fichier cabinet.xml, une page html qui affiche 
     les informations nécessaires à l'infirmière dont l'id est passé en paramètre pour sa journée-->
     
-    <xsl:param name="destinedId" select="001"/> <!-- id de l'infirmière -->
+    <xsl:param name="destinedId"/> <!-- id de l'infirmière, donné par le script c# -->
     
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     
@@ -16,7 +16,8 @@
         <html lang="fr">
             <head>
                 <title> Cabinet Infirmier </title>
-                <script type="text/javascript" src="../js/facture.js"/> <!-- Script pour la facturation -->
+                <meta charset="utf-8"/>
+                <script type="text/javascript" src="../js/facture.js"><xsl:text> </xsl:text></script> <!-- Script pour la facturation -->
                 <link rel="stylesheet" href="../css/infirmiere.css"/> <!-- Feuille de style -->
             </head>
             <body> 

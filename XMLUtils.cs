@@ -30,28 +30,30 @@ public class XMLUtils
     }
     
     
-    public static void XslTransform2 (string xmlFilePath, string xsltFilePath, string htmlFilePath) {
-        XPathDocument xpathDoc = new XPathDocument(xmlFilePath);
-        XslCompiledTransform xslt = new XslCompiledTransform();
-        xslt.Load(xsltFilePath);
-        XmlTextWriter htmlWriter = new XmlTextWriter(htmlFilePath, null);
-        xslt.Transform(xpathDoc, null, htmlWriter);
-    }
-    
     public static void XslTransform(string xmlFilePath, string xsltFilePath, string htmlFilePath)
     {
         XPathDocument xpathDoc = new XPathDocument(xmlFilePath);
         XslCompiledTransform xslt = new XslCompiledTransform();
         XsltSettings settings = new XsltSettings(true, true);
-        // settings.EnableDocumentFunction = true; // Enable the document() function
-
-        // Use XmlResolver.ThrowingResolver to restrict the resources that the XSLT can access
+        
+        // Permet de forcer la résolution des ressources externes (fonction document() et les URI externes)
         XmlResolver resolver = new XmlUrlResolver();
+
+        XsltArgumentList argList = new XsltArgumentList();
+        // Dans le cas où le fichier XSLT est infirmiere.xslt, on passe en paramètre le numéro de l'infirmerie
+        if (xsltFilePath.Equals("infirmiere.xslt"))
+        {
+            // Passe à la transformation le numéro de l'infirmerie en paramètre
+            argList.AddParam("destinedId", "", 002);
+        } else if (xsltFilePath.Equals("extractionPatient.xslt"))
+        {
+            argList.AddParam("destinedName", "", "Pourferlavésel");
+        }
 
         xslt.Load(xsltFilePath, settings, resolver);
         using (XmlTextWriter htmlWriter = new XmlTextWriter(htmlFilePath, null))
         {
-            xslt.Transform(xpathDoc, null, htmlWriter);
+            xslt.Transform(xpathDoc, argList, htmlWriter);
         }
     }
 }

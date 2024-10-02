@@ -9,12 +9,12 @@
     Prend les infos dans le fichier cabinet.xml et génère un nouveau fichier xml -->
 
     <!-- paramètre contenant le nom du patient dont il faut extraire les infos -->
-    <xsl:param name="destinedName" select="'Pourferlavésel'"/> 
+    <xsl:param name="destinedName"/> 
     
     <!-- variable contenant la partie de cabinet.xml concernant le patient dont le nom est celui donné en paramètre -->
     <xsl:variable name="patient" select="//ci:patient[ci:nom=$destinedName]"/>
 
-    <xsl:output method="xml" indent="yes"/>
+    <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
     
     <!-- A noter que toutes les informations optionnelles ne sont affichées que si elles sont présentes, d'où les conditions -->
     <xsl:template match="/">
