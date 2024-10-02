@@ -5,7 +5,7 @@
             +nom : String
             +prenom : String
             +sexe : Sexe
-            +naissance : Date (YYYY-MM-DD)
+            +naissance : Date YYYY-MM-DD
             +numeroSS : Int
             +adresse : Adresse
             +visites : Visite[]
@@ -18,12 +18,14 @@
         }
         
         class Visite {
-            +date : Date (YYYY-MM-DD)
+            +date : Date YYYY-MM-DD
             +intervenant : Infirmier
             +actes : String
         }
         
         class Adresse {
+            +etage: Int
+            +numero : Int
             +rue : String
             +codePostal : Int
             +ville : String
