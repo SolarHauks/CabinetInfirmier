@@ -9,7 +9,7 @@
     Prend les infos dans le fichier cabinet.xml et génère un nouveau fichier xml -->
 
     <!-- paramètre contenant le nom du patient dont il faut extraire les infos -->
-    <xsl:param name="destinedName"/> 
+    <xsl:param name="destinedName" select="'Pourferlavésel'"/> 
     
     <!-- variable contenant la partie de cabinet.xml concernant le patient dont le nom est celui donné en paramètre -->
     <xsl:variable name="patient" select="//ci:patient[ci:nom=$destinedName]"/>

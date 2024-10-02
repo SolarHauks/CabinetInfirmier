@@ -11,13 +11,14 @@
     <!-- paramètre contenant le nom du patient dont il faut extraire les infos -->
     <xsl:param name="destinedName" select="'Pourferlavésel'"/>
 
-    <xsl:output method="html" indent="yes"/>
+    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
 
     <!-- Affiche sous forme de tableau les infos du patient. Un premier tableau affiche les infos personnelles, un second les visites
     A noter que toutes les informations optionnelles ne sont affichées que si elles sont présentes, d'où les conditions. -->
     <xsl:template match="/">
         <html lang="fr">
             <head>
+                <meta charset="UTF-8"/>
                 <title>Information sur le patient</title>
             </head>
             <body>
@@ -26,20 +27,23 @@
                 <!-- Tableau des informations personelles -->
                 <table>
                     <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
                         <th>Sexe</th>
                         <th>Naissance</th>
-                        <th>Numéro SS</th>
+                        <xsl:choose> <!-- optionalElement -->
+                            <xsl:when test="//pat:numéroSS">
+                                <th>NSS</th>
+                            </xsl:when>
+                        </xsl:choose>
                         <th>Adresse</th>
-                        <th>Visites</th>
                     </tr>
                     <tr>
-                        <td><xsl:value-of select="//pat:nom"/></td>
-                        <td><xsl:value-of select="//pat:prénom"/></td>
                         <td><xsl:value-of select="//pat:sexe"/></td>
                         <td><xsl:value-of select="//pat:naissance"/></td>
-                        <td><xsl:value-of select="//pat:numéroSS"/></td>
+                        <xsl:choose> <!-- optionalElement -->
+                            <xsl:when test="//pat:numéroSS">
+                                    <td><xsl:value-of select="//pat:numéroSS"/></td>
+                            </xsl:when>
+                        </xsl:choose>
                         <td>
                             <xsl:apply-templates select="//pat:adresse"/>
                         </td>
@@ -94,8 +98,10 @@
                 <xsl:value-of select="pat:intervenant/pat:prénom"/>
             </td>
             <td>
-                <xsl:apply-templates select="pat:acte"/>
+                <xsl:value-of select="pat:acte"/>
             </td>
         </tr>
     </xsl:template>
+    
+    
 </xsl:stylesheet>
