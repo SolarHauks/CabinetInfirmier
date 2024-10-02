@@ -23,7 +23,13 @@
             //     Console.WriteLine(infirmier);
             // }
             
-            Console.WriteLine(cabinet.TotalActes("../../../data/xml/cabinet.xml"));
+            // Console.WriteLine(cabinet.TotalActes("../../../data/xml/cabinet.xml"));
+            
+            CheckHas checkHas = new CheckHas();
+            // Console.WriteLine(checkHas.Count("patient")); // affiche le nombre de patient
+            // Console.WriteLine(checkHas.hasAdresse("cabinet")); // affiche si tous les infirmiers ont une adresse
+            // Console.WriteLine(checkHas.NSSValide("198082205545843", 1998, 08, 'M')); // affiche si le NSS est valide
+            Console.WriteLine(checkHas.AllNSSValide()); // affiche si tous les NSS sont valides
         }
     }
 }

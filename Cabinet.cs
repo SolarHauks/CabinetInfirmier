@@ -102,25 +102,4 @@ public class Cabinet
         return totalActes;
     }
     
-    
-    // public static void Main(string[] args)
-    // {
-    //     string xmlFilePath = "path/to/your/xmlfile.xml";
-    //     XmlDocument doc = new XmlDocument();
-    //     doc.Load(xmlFilePath);
-    //
-    //     XmlNodeList infirmierNodes = doc.SelectNodes("//ci:infirmier/ci:nom", GetNamespaceManager(doc));
-    //
-    //     foreach (XmlNode node in infirmierNodes)
-    //     {
-    //         Console.WriteLine(node.InnerText);
-    //     }
-    // }
-    //
-    // private static XmlNamespaceManager GetNamespaceManager(XmlDocument doc)
-    // {
-    //     XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
-    //     nsmgr.AddNamespace("ci", "http://www.univ-grenoble-alpes.fr/l3miage/medical");
-    //     return nsmgr;
-    // }
 }

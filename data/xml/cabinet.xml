@@ -42,9 +42,9 @@
             <!-- Homme, né en aout 98 en France, à Marseille (n55 en bouches du rhone) 458 naissance -->
             <ca:nom>Alecole</ca:nom>
             <ca:prénom>Yvon</ca:prénom>
-            <ca:sexe>M</ca:sexe>
+            <ca:sexe>F</ca:sexe>
             <ca:naissance>1998-08-22</ca:naissance>
-            <ca:numéro>198082205545852</ca:numéro>
+            <ca:numéro>198082205545843</ca:numéro>
             
             <ca:adresse>
                 <ca:étage>6</ca:étage>
@@ -125,8 +125,8 @@
             <ca:nom>Pourferlavésel</ca:nom>
             <ca:prénom>Vladimir</ca:prénom>
             <ca:sexe>M</ca:sexe>
-            <ca:naissance>1942-12-30</ca:naissance>
-            <ca:numéro>198082205545842</ca:numéro>
+            <ca:naissance>1985-05-30</ca:naissance>
+            <ca:numéro>185057800608491</ca:numéro>
             <ca:adresse>
                 <ca:rue>Les morets</ca:rue>
                 <ca:codePostal>38112</ca:codePostal>

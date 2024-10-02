@@ -11,3 +11,4 @@ A demander :
 - Dans infirmiere.xslt, comment gérer l'affichage des adresses des patients ?
 - Dans infirmiere.xslt, comment gérer les caractères tab qui font déconner l'interpretation du xslt par le c#?
 - Dans infirmiere.xslt, quand utiliser avec c#, balise script s'autoferme et fait déconner le rendu ?
+- Dans le 7.3.2, ça veut dire quoi avoir une adresse complete ?
