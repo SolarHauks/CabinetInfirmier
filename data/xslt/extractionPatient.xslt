@@ -30,33 +30,40 @@
                     </pat:numéroSS>
                 </xsl:when>
             </xsl:choose>
-            <pat:adresse>
-                <xsl:choose> <!-- optionalElement -->
-                    <xsl:when test="$patient/ci:adresse/ci:étage">
-                        <pat:étage>
-                            <xsl:value-of select="$patient/ci:adresse/ci:étage"/>
-                        </pat:étage>
-                    </xsl:when>
-                </xsl:choose>
-                <xsl:choose> <!-- optionalElement -->
-                    <xsl:when test="$patient/ci:adresse/ci:numéro">
-                        <pat:numéro>
-                            <xsl:value-of select="$patient/ci:adresse/ci:numéro"/>
-                        </pat:numéro>
-                    </xsl:when>
-                </xsl:choose> <!-- optionalElement -->
-                <pat:rue><xsl:value-of select="$patient/ci:adresse/ci:rue"/></pat:rue>
-                <pat:codePostal><xsl:value-of select="$patient/ci:adresse/ci:codePostal"/></pat:codePostal>
-                <xsl:choose>
-                    <xsl:when test="$patient/ci:adresse/ci:ville">
-                        <pat:ville>
-                            <xsl:value-of select="$patient/ci:adresse/ci:ville"/>
-                        </pat:ville>
-                    </xsl:when>
-                </xsl:choose>
-            </pat:adresse>
-            <xsl:apply-templates select="$patient/ci:visite"/>
+            
+            <xsl:apply-templates select="$patient/ci:adresse"/> <!-- Affiche l'adresse du patient -->
+            
+            <xsl:apply-templates select="$patient/ci:visite"/> <!-- Affiche les visites programmées pour le patient -->
         </pat:patient>
+    </xsl:template>
+    
+    <!-- Affiche l'adresse du patient -->
+    <xsl:template match="ci:adresse">
+        <pat:adresse>
+            <xsl:choose> <!-- optionalElement -->
+                <xsl:when test="$patient/ci:adresse/ci:étage">
+                    <pat:étage>
+                        <xsl:value-of select="$patient/ci:adresse/ci:étage"/>
+                    </pat:étage>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose> <!-- optionalElement -->
+                <xsl:when test="$patient/ci:adresse/ci:numéro">
+                    <pat:numéro>
+                        <xsl:value-of select="$patient/ci:adresse/ci:numéro"/>
+                    </pat:numéro>
+                </xsl:when>
+            </xsl:choose> <!-- optionalElement -->
+            <pat:rue><xsl:value-of select="$patient/ci:adresse/ci:rue"/></pat:rue>
+            <pat:codePostal><xsl:value-of select="$patient/ci:adresse/ci:codePostal"/></pat:codePostal>
+            <xsl:choose>
+                <xsl:when test="$patient/ci:adresse/ci:ville">
+                    <pat:ville>
+                        <xsl:value-of select="$patient/ci:adresse/ci:ville"/>
+                    </pat:ville>
+                </xsl:when>
+            </xsl:choose>
+        </pat:adresse>
     </xsl:template>
     
     <!-- Affiche les visites programmées pour le patient -->

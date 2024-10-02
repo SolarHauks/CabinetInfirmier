@@ -9,7 +9,7 @@
     
     <xsl:param name="destinedId" select="001"/> <!-- id de l'infirmière -->
     
-    <xsl:output method="html" indent="yes"/>
+    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     
     <!-- Génère la page html. Affiche sous forme de tableau les visites à effectuer pour l'infirmière. -->
     <xsl:template match="/">
@@ -50,11 +50,7 @@
                 <!-- Bouton pour la facturation. 
                 Au click appelle la fonction openFacture(prénom, nom, actes) présente dans le fichier facture.js -->
                 <xsl:element name="button">
-                    <xsl:attribute name="onclick">
-                        openFacture('<xsl:value-of select="ci:prénom"/>',
-                                    '<xsl:value-of select="ci:nom"/>',
-                                    '<xsl:value-of select="ci:visite/ci:acte"/>')
-                    </xsl:attribute >
+                    <xsl:attribute name="onclick">openFacture('<xsl:value-of select="ci:prénom"/>','<xsl:value-of select="ci:nom"/>', '<xsl:value-of select="ci:visite/ci:acte"/>')</xsl:attribute >
                     Facture
                 </xsl:element>
             </td>
