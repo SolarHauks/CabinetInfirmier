@@ -7,7 +7,7 @@
     <!-- Génère à partir des données du cabinet présente dans le fichier cabinet.xml, une page html qui affiche 
     les informations nécessaires à l'infirmière dont l'id est passé en paramètre pour sa journée-->
     
-    <xsl:param name="destinedId" select="001"/> <!-- id de l'infirmière, donné par le script c# -->
+    <xsl:param name="destinedId" select="'001'"/> <!-- id de l'infirmière, donné par le script c# -->
     
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     

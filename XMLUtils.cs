@@ -41,11 +41,11 @@ public class XMLUtils
 
         XsltArgumentList argList = new XsltArgumentList();
         // Dans le cas où le fichier XSLT est infirmiere.xslt, on passe en paramètre le numéro de l'infirmerie
-        if (xsltFilePath.Equals("infirmiere.xslt"))
+        if (xsltFilePath.EndsWith("infirmiere.xslt"))
         {
             // Passe à la transformation le numéro de l'infirmerie en paramètre
-            argList.AddParam("destinedId", "", 002);
-        } else if (xsltFilePath.Equals("extractionPatient.xslt"))
+            argList.AddParam("destinedId", "", "001");
+        } else if (xsltFilePath.EndsWith("extractionPatient.xslt"))
         {
             argList.AddParam("destinedName", "", "Pourferlavésel");
         }
