@@ -3,7 +3,6 @@ A faire / a finir :
 - Completer facture (optionnel, voir 6.2.1 - e)
 - A fix : dans infirmiere.xslt, le calcul du nombre de patient est faux car se base sur le nombre de visite effectuer 
     par l'infirmière, et non le nombre de patient à visiter
-- Dans infirmiere.xslt, erreurs dans la mise en page lors de l'affichage de la description des actes
     
 A demander :
 - A demander : dans infirmiere.xslt, le calcul du nombre de patient est faux car se base sur le nombre de visite effectuer 

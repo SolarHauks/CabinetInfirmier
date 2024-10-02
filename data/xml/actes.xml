@@ -14,10 +14,10 @@
             temporaire ou permanante.</type>
     </types>
     <actes>
-        <acte id="101" type="pi" clé="AMI" coef="1.5">Prélèvement par ponction veineuse directe</acte>
-        <acte id="102" type="pi" clé="AMI" coef="5">Saignée</acte>
+        <acte id="101" type="pi" clé="AMI" coef="1.5">Prélèvement par ponction veineuse directe. </acte>
+        <acte id="102" type="pi" clé="AMI" coef="5">Saignée. </acte>
         <acte id="103" type="pi" clé="AMI" coef="1">Prélèvement aseptique cutané ou de sécrétions muqueuses, prélèvement
-            de selles ou d’urine pour examens sytologiques, bactériologiques, mycologiques.</acte>
+            de selles ou d’urine pour examens sytologiques, bactériologiques, mycologiques. </acte>
         <!-- ...et plein d’autres actes -->
     </actes>
 </ngap>
