@@ -11,7 +11,19 @@
             AppContext.SetSwitch("Switch.System.Xml.AllowDefaultResolver", true);
             
             // XMLUtils.XslTransform("../../../data/xml/cabinet.xml", "../../../data/xslt/infirmiere.xslt", "../../../data/html/output.html");
-            XMLUtils.XslTransform("../../../data/xml/cabinet.xml", "../../../data/xslt/extractionPatient.xslt", "../../../data/xml/Pourferlavésel.xml");
+            // XMLUtils.XslTransform("../../../data/xml/cabinet.xml", "../../../data/xslt/extractionPatient.xslt", "../../../data/xml/Pourferlavésel.xml");
+            
+            Cabinet cabinet = new Cabinet();
+            
+            // cabinet.AnalyseGlobale("../../../data/xml/cabinet.xml");
+            
+            // List<string> infirmiers = cabinet.RecupereText("../../../data/xml/cabinet.xml");
+            // foreach (string infirmier in infirmiers)
+            // {
+            //     Console.WriteLine(infirmier);
+            // }
+            
+            Console.WriteLine(cabinet.TotalActes("../../../data/xml/cabinet.xml"));
         }
     }
 }

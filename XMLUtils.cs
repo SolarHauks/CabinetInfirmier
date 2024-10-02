@@ -40,13 +40,14 @@ public class XMLUtils
         XmlResolver resolver = new XmlUrlResolver();
 
         XsltArgumentList argList = new XsltArgumentList();
-        // Dans le cas où le fichier XSLT est infirmiere.xslt, on passe en paramètre le numéro de l'infirmerie
+        // Selon le fichier XSLT, on ajoute des paramètres correspondants
         if (xsltFilePath.EndsWith("infirmiere.xslt"))
         {
-            // Passe à la transformation le numéro de l'infirmerie en paramètre
+            // Passe à la transformation le numéro de l'infirmiere en paramètre
             argList.AddParam("destinedId", "", "001");
         } else if (xsltFilePath.EndsWith("extractionPatient.xslt"))
         {
+            // Passe à la transformation le nom du patient en paramètre
             argList.AddParam("destinedName", "", "Pourferlavésel");
         }
 
