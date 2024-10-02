@@ -23,7 +23,7 @@
             <body> 
                 <div>
                     <h1>Bonjour <xsl:value-of select="//ci:infirmier[@id=$destinedId]/ci:prénom"/> </h1>
-                    <p> Aujourd'hui, vous avez <xsl:value-of select="count(//ci:patient/ci:visite[@intervenant=$destinedId])"/> patient(s).</p> <!-- TODO : voir le todo -->
+                    <p> Aujourd'hui, vous avez <xsl:value-of select="count(//ci:patient[ci:visite/@intervenant=$destinedId])"/> patient(s).</p>
                 </div>
                 <div>
                     <table>
