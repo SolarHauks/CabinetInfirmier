@@ -4,14 +4,18 @@
         xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/patient"
         elementFormDefault="qualified" >
     
+    <!-- Langage servant uniquement à la description des informations du patient pour les transformations des fichiers 
+    extractionPatient.xslt et affichagePatient.xslt -->
+    
     <element name="patient" type="ci:Patient"/>
 
     <!--*****************************       Implementation des Complex Type       *****************************-->
 
     <!-- Type Patient -->
 
-    <!-- Un patient à forcément un nom, un prénom, un genre, une date de naissance et une adresse, ils peuvent
-    avoir des visites (A savoir qu'ils peuvent ne pas avoir de visite du tout) ainsi qu'un ). -->
+    <!-- Un patient a forcément un nom, un prénom, un genre, une date de naissance et une adresse. Ils peuvent
+    avoir des visites (A savoir qu'ils peuvent ne pas encore avoir de visite) ainsi qu'un numéro de sécurité social qui 
+    est optionnel, car il peut ne pas encore avoir été fourni. -->
     <complexType name="Patient">
         <sequence>
             <element name="nom" type="ci:Nom"/>
@@ -28,8 +32,8 @@
 
     <!-- Type Adresse -->
 
-    <!-- Une adresse à obligatoirement un nom de rue un codePostal et peut contenir des informations complémentaire, 
-    comme un numéro de rue, le nom de la ville et un étage. -->
+    <!-- Une adresse a obligatoirement un codePostal et une ville. Elle peut aussi contenir un numéro de rue, 
+    un nom de la ville et un étage. -->
     <complexType name="Adresse">
         <sequence>
             <!-- Il peut ne pas avoir d'étage, dans une maison sans étage par exemple -->
@@ -38,21 +42,23 @@
             <element name="numéro" type="ci:Num_Rue" minOccurs="0"/>
             <element name="rue" type="ci:Chaine"/>
             <element name="codePostal" type="ci:Postal"/>
-            <!-- Le nom de la ville est falcultatif, elle est déjà contenue dans le code postal-->
+            <!-- Le nom de la ville est facultatif, il est déjà contenue dans le code postal-->
             <element name="ville" type="ci:Chaine" minOccurs="0"/>
         </sequence>
     </complexType>
 
     <!-- Type Visite -->
 
-    <!-- Une visite contient le numéro d'un intervenant du cabinet ainsi que la date de la visite et un acte A VOIR -->
+    <!-- Une visite contient le numéro d'un intervenant du cabinet qui effectue la visite, la date de la visite, 
+    ainsi que la liste des actes à effectuer pendant la visite. -->
     <complexType name="Visite">
         <sequence>
             <!-- Un patient peut avoir plusieurs actes lors d'une visite -->
             <element name="intervenant" type="ci:Intervenant"/>
+            <!-- Un patient peut avoir plusieurs actes lors d'une visite -->
             <element name="acte" type="ci:Chaine" maxOccurs="unbounded"/>
         </sequence>
-        <!-- Une visite prend une seul date -->
+        <!-- Une visite se déroule à une seule date -->
         <attribute name="date" type="date" use="required"/>
     </complexType>
 
@@ -74,7 +80,6 @@
     
     <!-- Un Nom commence forcément par une majuscule puis peut être aussi long que l'on veut. 
     Il peut contenir des accents sur les lettres -->
-    <!-- Un Nom peu être un nom de ville, un prénom, un nom de famille ou encore un nom de cabinet. -->
     <simpleType name="Nom">
         <restriction base="string">
             <pattern value="[A-Z][a-zéèêëîïôö]+"/>
@@ -106,8 +111,8 @@
 
     
     <!-- Type Postal -->
-    
-    <!-- Un type Postal représente le code postal d'une ville, il est retranscrit en un nombre à 5 chiffres.-->
+
+    <!-- Un type Postal représente le code postal d'une ville, et correspond à un nombre à 5 chiffres.-->
     <simpleType name="Postal">
         <restriction base="string">
             <pattern value="[0-9]{5}"/>

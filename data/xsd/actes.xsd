@@ -4,6 +4,8 @@
         xmlns:ci='http://www.univ-grenoble-alpes.fr/l3miage/actes'
         elementFormDefault = "qualified" >
     
+    <!-- vocabulaire définissant les actes -->
+    
     <element name="ngap" type="ci:NGAP"/>
     
     <!--*****************************       Implementation des Complex Type       *****************************-->

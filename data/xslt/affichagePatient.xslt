@@ -4,11 +4,17 @@
                 xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
                 xmlns:act='http://www.univ-grenoble-alpes.fr/l3miage/actes'
                 xmlns:pat="http://www.univ-grenoble-alpes.fr/l3miage/patient">
-    
+
+    <!-- Transformation affichant sous forme de page html les données du patient dont le nom est passé en paramètre. 
+    Récupère les données du fichier xml généré par la transformation extractionPatient.xslt-->
+
+    <!-- paramètre contenant le nom du patient dont il faut extraire les infos -->
     <xsl:param name="destinedName" select="'Pourferlavésel'"/>
 
     <xsl:output method="html" indent="yes"/>
-    
+
+    <!-- Affiche sous forme de tableau les infos du patient. Un premier tableau affiche les infos personnelles, un second les visites
+    A noter que toutes les informations optionnelles ne sont affichées que si elles sont présentes, d'où les conditions. -->
     <xsl:template match="/">
         <html lang="fr">
             <head>
@@ -16,7 +22,8 @@
             </head>
             <body>
                 <h1>Information de <xsl:value-of select="//pat:nom"/> <xsl:text> </xsl:text> <xsl:value-of select="//pat:prénom"/></h1>
-                
+
+                <!-- Tableau des informations personelles -->
                 <table>
                     <tr>
                         <th>Nom</th>
@@ -39,6 +46,7 @@
                     </tr>
                 </table>
 
+                <!-- Tableau des visites -->
                 <table>
                     <tr>
                         <th>Date</th>
@@ -51,6 +59,7 @@
         </html>
     </xsl:template>
     
+    <!-- Affiche l'adresse du patient correctement mise en forme selon les informations disponibles-->
     <xsl:template match="pat:adresse">
         <xsl:choose>
             <xsl:when test="pat:étage">
@@ -75,10 +84,11 @@
         </xsl:choose>
     </xsl:template>
     
+    <!-- Affiche les visites programmées pour le patient -->
     <xsl:template match="pat:visite">
         <tr>
             <td><xsl:value-of select="@date"/></td>
-            <td>
+            <td> <!-- Nom et Prénom de l'intervenant effectuant la visite -->
                 <xsl:value-of select="pat:intervenant/pat:nom"/>
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="pat:intervenant/pat:prénom"/>

@@ -3,6 +3,8 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
     
+    <!-- Données du cabinet médical -->
+    
     <ca:nom>Soins a Grenoble</ca:nom>
     
     <ca:adresse>
@@ -93,7 +95,7 @@
             </ca:adresse>
             
             <ca:visite date="2015-12-08">
-                <ca:acte id="111"/> <!-- Aucune idée de la valeur, ici c'est un placeholder -->
+                <ca:acte id="111"/>
             </ca:visite>
             
         </ca:patient>
@@ -114,7 +116,7 @@
             </ca:adresse>
             
             <ca:visite date="2015-12-08">
-                <ca:acte id="112"/> <!-- Aucune idée de la valeur, ici c'est un placeholder -->
+                <ca:acte id="112"/>
             </ca:visite>
             
         </ca:patient>

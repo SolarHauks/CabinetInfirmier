@@ -2,6 +2,10 @@
 <ngap xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
       xmlns='http://www.univ-grenoble-alpes.fr/l3miage/actes' 
       xsi:schemaLocation='http://www.univ-grenoble-alpes.fr/l3miage/actes ../xsd/actes.xsd'>
+    
+    <!-- Description des types d'actes réalisables lors d'une visite médicale. Contient de plus les informations 
+    nécessaires pour le calcul du montant de la facture de la visite-->
+    
     <types>
         <type id="pi">prélèvements et injections</type>
         <type id="pc">pansements courants</type>

@@ -5,12 +5,18 @@
                 xmlns:act='http://www.univ-grenoble-alpes.fr/l3miage/actes'
                 xmlns:pat="http://www.univ-grenoble-alpes.fr/l3miage/patient">
     
-    <xsl:param name="destinedName" select="'Pourferlavésel'"/>
+    <!-- Transformation extrayant les informations du patient dont le nom est donné en paramètre
+    Prend les infos dans le fichier cabinet.xml et génère un nouveau fichier xml -->
+
+    <!-- paramètre contenant le nom du patient dont il faut extraire les infos -->
+    <xsl:param name="destinedName" select="'Pourferlavésel'"/> 
     
+    <!-- variable contenant la partie de cabinet.xml concernant le patient dont le nom est celui donné en paramètre -->
     <xsl:variable name="patient" select="//ci:patient[ci:nom=$destinedName]"/>
 
     <xsl:output method="xml" indent="yes"/>
     
+    <!-- A noter que toutes les informations optionnelles ne sont affichées que si elles sont présentes, d'où les conditions -->
     <xsl:template match="/">
         <pat:patient>
             <pat:nom><xsl:value-of select="$patient/ci:nom"/></pat:nom>
@@ -53,10 +59,11 @@
         </pat:patient>
     </xsl:template>
     
+    <!-- Affiche les visites programmées pour le patient -->
     <xsl:template match="ci:visite">
         <xsl:element name="pat:visite">
             <xsl:attribute name="date"><xsl:value-of select="@date"/></xsl:attribute>
-            <pat:intervenant>
+            <pat:intervenant> <!-- Nom et Prénom de l'intervenant effectuant la visite -->
                 <pat:nom><xsl:value-of select="//ci:infirmier[@id=current()/@intervenant]/ci:nom"/></pat:nom>
                 <pat:prénom><xsl:value-of select="//ci:infirmier[@id=current()/@intervenant]/ci:prénom"/></pat:prénom>
             </pat:intervenant>
@@ -66,6 +73,8 @@
         </xsl:element>
     </xsl:template>
 
+    <!-- Afficher la description des actes à effectuer pendant la visite, compilant toutes les descriptions d'actes
+     présentes dans le fichier actes.xml dans une chaine -->
     <xsl:template match="ci:acte">
         <xsl:variable name="actes" select="document('actes.xml', /)/act:ngap"/>
         <xsl:variable name="acteId" select="@id"/>

@@ -1,3 +1,23 @@
 A faire / a finir :
 - Finir les CV persos
 - Completer facture (optionnel, voir 6.2.1 - e)
+- A fix : dans infirmiere.xslt, le calcul du nombre de patient est faux car se base sur le nombre de visite effectuer 
+    par l'infirmière, et non le nombre de patient à visiter
+- Dans affichagePatient.xslt, certaines données sont optionnelles et leurs affichages doivent donc être conditionnelles (ie : rajouter des conditions)
+    
+A demander :
+- A demander : dans infirmiere.xslt, le calcul du nombre de patient est faux car se base sur le nombre de visite effectuer 
+    par l'infirmière, et non le nombre de patient à visiter. Est-ce que ce comportement est souhaité ?
+- toujours dans infirmiere.xslt, comment laisser des espaces entre mes éléments plus élégamment que de mettre des <text> ?
+
+
+
+
+
+
+
+
+
+
+
+- Dans affichagePatient.xslt, besoin de mettre 2 fois noms et prénoms ?

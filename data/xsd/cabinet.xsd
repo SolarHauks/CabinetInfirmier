@@ -4,6 +4,7 @@
         xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical"
         elementFormDefault="qualified" >
     
+    <!-- Element racine du schéma : Cabinet -->
     <element name="cabinet" type="ci:Cabinet">
         <keyref name="infirmierExist" refer="ci:infirmierUnique">
             <selector xpath="ci:patients/ci:patient/ci:visite"/>
@@ -15,11 +16,11 @@
     
     <!-- Type Cabinet  -->
     
-    <!-- Un Cabinet à un nom de cabinet une adresse de location ainsi qu'une liste d'infirmiers qui y travaille 
-    et une liste de patients. -->
+    <!-- Un Cabinet à un nom, est situé à une adresse, et contient une liste d'infirmiers qui y travaille 
+    ainsi qu'une liste de patients. Chaque infirmier est unique, de meme que chaque patient est uniqye-->
     <complexType name="Cabinet">
         <sequence>
-            <element name="nom" type="ci:Chaine"/>  <!-- le nom du cabinet est une chaine (ex : Soins a Grenoble) -->
+            <element name="nom" type="ci:Chaine"/>  <!-- le nom du cabinet est une chaine restreinte (ex : Soins a Grenoble) -->
             <element name="adresse" type="ci:Adresse"/>
             <element name="infirmiers" type="ci:Infirmiers">
                 <unique name="infirmierUnique">
@@ -60,8 +61,8 @@
 
     <!-- Type Adresse -->
 
-    <!-- Une adresse à obligatoirement un nom de rue un codePostal et peut contenir des informations complémentaire, 
-    comme un numéro de rue, le nom de la ville et un étage. -->
+    <!-- Une adresse a obligatoirement un codePostal et une ville. Elle peut aussi contenir un numéro de rue, 
+    un nom de la ville et un étage. -->
     <complexType name="Adresse">
         <sequence>
             <!-- Il peut ne pas avoir d'étage, dans une maison sans étage par exemple -->
@@ -70,7 +71,7 @@
             <element name="numéro" type="ci:Num_Rue" minOccurs="0"/>
             <element name="rue" type="ci:Chaine"/>
             <element name="codePostal" type="ci:Postal"/>
-            <!-- Le nom de la ville est falcultatif, elle est déjà contenue dans le code postal-->
+            <!-- Le nom de la ville est facultatif, il est déjà contenue dans le code postal-->
             <element name="ville" type="ci:Chaine" minOccurs="0"/>
         </sequence>
     </complexType>
@@ -78,7 +79,7 @@
     <!-- Type Patients -->
 
     <!-- Patients contient une liste de patient étant pris en charge par le cabinet. -->
-    <!-- On met le nombre de patient de cabinet en unbounded, on suppose que le cabinet peut prendre en charge 
+    <!-- On met le nombre de patients de cabinet en unbounded, on suppose que le cabinet peut prendre en charge 
     autant de patient qu'il le veut. -->
     <complexType name="Patients">
         <sequence>
@@ -88,33 +89,35 @@
 
     <!-- Type Patient -->
 
-    <!-- Un patient à forcément un nom, un prénom, un genre, une date de naissance et une adresse, ils peuvent
-    avoir des visites (A savoir qu'ils peuvent ne pas avoir de visite du tout) ainsi qu'un ). -->
+    <!-- Un patient a forcément un nom, un prénom, un genre, une date de naissance et une adresse. Ils peuvent
+    avoir des visites (A savoir qu'ils peuvent ne pas encore avoir de visite) ainsi qu'un numéro de sécurité social qui 
+    est optionnel, car il peut ne pas encore avoir été fourni. -->
     <complexType name="Patient">
         <sequence>
             <element name="nom" type="ci:Nom"/>
             <element name="prénom" type="ci:Nom"/>
-            <element name="sexe" type="ci:Sexe"/>
+            <element name="sexe" type="ci:Sexe"/> <!-- H, F, A -->
             <element name="naissance" type="date"/>
             <!-- numéro de sécurité social (Peut être vide car on ne l'a pas forcément au moment de rentrer les données) -->
             <element name="numéro" type="ci:Secu" minOccurs="0"/> 
             <element name="adresse" type="ci:Adresse"/>
-            <!-- Un patient peut ne pas avoir de visite, tout comme il peut avoir une infinité de visite -->
+            <!-- Un patient peut ne pas encore avoir de visite, tout comme il peut avoir une infinité de visite -->
             <element name="visite" type="ci:Visite" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
 
     <!-- Type Visite -->
 
-    <!-- Une visite contient le numéro d'un intervenant du cabinet ainsi que la date de la visite et un acte A VOIR -->
+    <!-- Une visite contient le numéro d'un intervenant du cabinet qui effectue la visite, la date de la visite, 
+    ainsi que la liste des actes à effectuer pendant la visite. -->
     <complexType name="Visite">
         <sequence>
             <!-- Un patient peut avoir plusieurs actes lors d'une visite -->
             <element name="acte" type="ci:Acte" maxOccurs="unbounded"/>
         </sequence>
-        <!-- Une visite prend une seul date -->
+        <!-- Une visite se déroule à une seule date -->
         <attribute name="date" type="date" use="required"/>
-        <!-- Un seul intervenant par visite -->
+        <!-- Un seul intervenant par visite. Peut ne pas encore avoir été attribué -->
         <attribute name="intervenant" type="ci:Nombre3"/> 
     </complexType>
 
@@ -122,7 +125,7 @@
     
     <!-- Un acte contient un id. -->
     <complexType name="Acte">
-        <!-- Un Acte ne contient qu'un seul id -->
+        <!-- Un Acte ne contient qu'un seul id, se référant aux actes décris dans le fichier actes.xml -->
         <attribute name="id" type="ci:Nombre3"/> 
     </complexType>
 
@@ -132,8 +135,8 @@
     
     <!-- Type Nom -->
     
-    <!-- Un Nom commence forcément par une majuscule puis peut être aussi long que l'on veut. 
-    Il peut contenir des accents sur les lettres -->
+    <!-- Un Nom est une chaine restreinte commencant forcément par une majuscule puis comportant une suite 
+    de lettres minuscules, possiblement accentués. -->
     <!-- Un Nom peu être un nom de ville, un prénom, un nom de famille ou encore un nom de cabinet. -->
     <simpleType name="Nom">
         <restriction base="string">
@@ -160,7 +163,7 @@
     <simpleType name="Photo">
         <restriction base="string">
             <!-- On rentre le nom du fichier avec minuscule ou majuscule puis on met un . 
-            et enfin une extension qui génère une image.-->
+            et enfin une extension qui définit le format de l'image.-->
             <pattern value="[a-zA-Z_-]+[.](jpg|JPG|gif|GIF|png|PNG|svg|SVG)"/>  <!-- A VOIR -->
         </restriction>
     </simpleType>
@@ -192,7 +195,7 @@
     
     <!-- Type Postal -->
     
-    <!-- Un type Postal représente le code postal d'une ville, il est retranscrit en un nombre à 5 chiffres.-->
+    <!-- Un type Postal représente le code postal d'une ville, et correspond à un nombre à 5 chiffres.-->
     <simpleType name="Postal">
         <restriction base="string">
             <pattern value="[0-9]{5}"/>
@@ -223,7 +226,7 @@
     <!-- Type Etage -->
 
     <!-- Etage est un nombre qui représente l'étage à l'adresse indiqué
-    Il peut exister des personnes qui habite dans des immeubles à l'étage n°86 ou encore à l'étage n°-5 -->
+    Il peut exister des personnes qui habite dans des immeubles à l'étage n°86 ou encore à l'étage n°-5 (sous-sol) -->
     <simpleType name="Etage">
         <restriction base="int">
             <minInclusive value="-999"/> <!-- Allez jusqu'à l'étage -999 permet de prendre large -->
