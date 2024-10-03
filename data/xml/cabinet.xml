@@ -133,6 +133,9 @@
         <ca:codePostal>38000</ca:codePostal>
         <ca:ville>Grenoble</ca:ville>
       </ca:adresse>
+      <ca:visite intervenant="001" date="2017-09-01">
+        <ca:acte id="001" />
+      </ca:visite>
     </ca:patient>
   </ca:patients>
 </ca:cabinet>

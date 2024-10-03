@@ -292,10 +292,8 @@ public class Cabinet
         XmlNodeList patientNodes = doc.SelectNodes("//ca:patient", nsmgr);
         int i = 0;
         while (i < patientNodes.Count 
-               && patientNodes[i].SelectSingleNode("ca:numéro", nsmgr) != null 
                && patientNodes[i].SelectSingleNode("ca:numéro", nsmgr).InnerText != patientNSS)
         {
-            Console.WriteLine(patientNodes[i].SelectSingleNode("ca:nom", nsmgr).InnerText);
             i++;
         }
 
@@ -306,10 +304,7 @@ public class Cabinet
         }
         else
         {
-            Console.WriteLine(patientNodes[i].SelectSingleNode("ca:nom", nsmgr).InnerText);
-            Console.WriteLine(i);
-            Console.WriteLine(patientNodes.Count);
-            // patientNodes[i].AppendChild(newVisit);
+            patientNodes[i].AppendChild(newVisit);
         }
 
         // Sauvegarde du document
