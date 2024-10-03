@@ -66,23 +66,27 @@ public class CheckHas
         int sexeDigit = int.Parse(nss.Substring(0, 1));
         if (!((sexeDigit == 1 && Sexe == 'M') || (sexeDigit == 2 && Sexe == 'F') || (sexeDigit == 3 || sexeDigit == 4 || sexeDigit == 7 || sexeDigit == 8)))
         {
+            Console.WriteLine("Erreur de sexe, nss : {0}", nss);
             return false;
         }
         
         int annee = int.Parse(nss.Substring(1, 2));
         if (annee != anneeNaissance % 100)
         {
+            Console.WriteLine("Erreur d'année, nss : {0}", nss);
             return false;
         }
         
         int mois = int.Parse(nss.Substring(3, 2));
         if (!(mois == moisNaissance || mois is >= 20 and <= 42 || mois is >= 50 and <= 99))
         {
+            Console.WriteLine("Erreur de mois, nss : {0}", nss);
             return false;
         }
         
         if (!long.TryParse(nss.Substring(0, 13), out long nssNumber))
         {
+            Console.WriteLine("Erreur de parse, nss : {0}", nss);
             return false;
         }
         
@@ -90,6 +94,7 @@ public class CheckHas
         int cleCalculee = 97 - (int)(nssNumber % 97);
         if (cleSecu != cleCalculee)
         {
+            Console.WriteLine("Erreur de clé, nss : {0}. Clé calclulée : {1}", nss, cleCalculee);
             return false;
         }
         
