@@ -136,6 +136,9 @@
       <ca:visite intervenant="001" date="2017-09-01">
         <ca:acte id="001" />
       </ca:visite>
+      <ca:visite intervenant="001" date="2017-09-01">
+        <ca:acte id="001" />
+      </ca:visite>
     </ca:patient>
   </ca:patients>
 </ca:cabinet>
