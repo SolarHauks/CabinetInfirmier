@@ -116,13 +116,6 @@ public class CheckHas
         // Pour chaque noeud patient, vérifie si le numéro de sécurité sociale est valide
         foreach (XmlNode patientNode in patientNodes)
         {
-            // Le NSS etant optionnel, on passe au noeud suivant si le numéro de sécurité sociale n'existe pas
-            XmlNode nssNode = patientNode.SelectSingleNode("ca:numéro", nsmgr);
-            if (nssNode == null)
-            {
-                continue; // Passe au nœud suivant si le numéro de sécurité sociale n'existe pas
-            }
-            
             string nss = patientNode.SelectSingleNode("ca:numéro", nsmgr).InnerText;
             int anneeNaissance = int.Parse(patientNode.SelectSingleNode("ca:naissance", nsmgr).InnerText.Substring(0, 4));
             int moisNaissance = int.Parse(patientNode.SelectSingleNode("ca:naissance", nsmgr).InnerText.Substring(5, 2));

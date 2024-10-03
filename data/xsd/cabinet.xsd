@@ -99,7 +99,7 @@
             <element name="sexe" type="ci:Sexe"/> <!-- H, F, A -->
             <element name="naissance" type="date"/>
             <!-- numéro de sécurité social (Peut être vide car on ne l'a pas forcément au moment de rentrer les données) -->
-            <element name="numéro" type="ci:Secu" minOccurs="0"/> 
+            <element name="numéro" type="ci:Secu"/> 
             <element name="adresse" type="ci:Adresse"/>
             <!-- Un patient peut ne pas encore avoir de visite, tout comme il peut avoir une infinité de visite -->
             <element name="visite" type="ci:Visite" minOccurs="0" maxOccurs="unbounded"/>

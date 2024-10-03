@@ -29,21 +29,13 @@
                     <tr>
                         <th>Sexe</th>
                         <th>Naissance</th>
-                        <xsl:choose> <!-- optionalElement -->
-                            <xsl:when test="//pat:numéroSS">
-                                <th>NSS</th>
-                            </xsl:when>
-                        </xsl:choose>
+                        <th>NSS</th>
                         <th>Adresse</th>
                     </tr>
                     <tr>
                         <td><xsl:value-of select="//pat:sexe"/></td>
                         <td><xsl:value-of select="//pat:naissance"/></td>
-                        <xsl:choose> <!-- optionalElement -->
-                            <xsl:when test="//pat:numéroSS">
-                                    <td><xsl:value-of select="//pat:numéroSS"/></td>
-                            </xsl:when>
-                        </xsl:choose>
+                        <td><xsl:value-of select="//pat:numéroSS"/></td>
                         <td>
                             <xsl:apply-templates select="//pat:adresse"/>
                         </td>

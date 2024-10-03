@@ -1,148 +1,138 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ca:cabinet xmlns:ca="http://www.univ-grenoble-alpes.fr/l3miage/medical"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
-    
-    <!-- Données du cabinet médical -->
-    
-    <ca:nom>Soins a Grenoble</ca:nom>
-    
-    <ca:adresse>
-        <ca:numéro>60</ca:numéro>
-        <ca:rue>rue de la Chimie</ca:rue>
-        <ca:codePostal>38041</ca:codePostal>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ca:cabinet xmlns:ca="http://www.univ-grenoble-alpes.fr/l3miage/medical" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
+  <!-- Données du cabinet médical -->
+  <ca:nom>Soins a Grenoble</ca:nom>
+  <ca:adresse>
+    <ca:numéro>60</ca:numéro>
+    <ca:rue>rue de la Chimie</ca:rue>
+    <ca:codePostal>38041</ca:codePostal>
+    <ca:ville>Grenoble</ca:ville>
+  </ca:adresse>
+  <ca:infirmiers>
+    <ca:infirmier id="001">
+      <ca:nom>Frechie</ca:nom>
+      <ca:prénom>Sarah</ca:prénom>
+      <ca:photo>sarah.png</ca:photo>
+    </ca:infirmier>
+    <ca:infirmier id="002">
+      <ca:nom>Sticke</ca:nom>
+      <ca:prénom>Sophie</ca:prénom>
+      <ca:photo>sophie.jpg</ca:photo>
+    </ca:infirmier>
+    <ca:infirmier id="003">
+      <ca:nom>Ochon</ca:nom>
+      <ca:prénom>Paul</ca:prénom>
+      <ca:photo>paul.jpg</ca:photo>
+    </ca:infirmier>
+    <ca:infirmier id="004">
+      <ca:nom>Némard</ca:nom>
+      <ca:prénom>Jean</ca:prénom>
+      <ca:photo>jean.png</ca:photo>
+    </ca:infirmier>
+  </ca:infirmiers>
+  <ca:patients>
+    <ca:patient>
+      <!-- Homme, né en aout 98 en France, à Marseille (n55 en bouches du rhone) 458 naissance -->
+      <ca:nom>Alecole</ca:nom>
+      <ca:prénom>Yvon</ca:prénom>
+      <ca:sexe>F</ca:sexe>
+      <ca:naissance>1998-08-22</ca:naissance>
+      <ca:numéro>298082205545890</ca:numéro>
+      <ca:adresse>
+        <ca:étage>6</ca:étage>
+        <ca:numéro>50</ca:numéro>
+        <ca:rue>avenue Felix Viallet</ca:rue>
+        <ca:codePostal>38031</ca:codePostal>
         <ca:ville>Grenoble</ca:ville>
-    </ca:adresse>
-    
-    <ca:infirmiers>
-        
-        <ca:infirmier id="001">
-            <ca:nom>Frechie</ca:nom>
-            <ca:prénom>Sarah</ca:prénom>
-            <ca:photo>sarah.png</ca:photo>
-        </ca:infirmier>
-        
-        <ca:infirmier id="002">
-            <ca:nom>Sticke</ca:nom>
-            <ca:prénom>Sophie</ca:prénom>
-            <ca:photo>sophie.jpg</ca:photo>
-        </ca:infirmier>
-        
-        <ca:infirmier id="003">
-            <ca:nom>Ochon</ca:nom>
-            <ca:prénom>Paul</ca:prénom>
-            <ca:photo>paul.jpg</ca:photo>
-        </ca:infirmier>
-        
-    </ca:infirmiers>
-    
-    <ca:patients>
-        
-        <ca:patient>
-            <!-- Homme, né en aout 98 en France, à Marseille (n55 en bouches du rhone) 458 naissance -->
-            <ca:nom>Alecole</ca:nom>
-            <ca:prénom>Yvon</ca:prénom>
-            <ca:sexe>F</ca:sexe>
-            <ca:naissance>1998-08-22</ca:naissance>
-            <ca:numéro>298082205545890</ca:numéro>
-            
-            <ca:adresse>
-                <ca:étage>6</ca:étage>
-                <ca:numéro>50</ca:numéro>
-                <ca:rue>avenue Felix Viallet</ca:rue>
-                <ca:codePostal>38031</ca:codePostal>
-                <ca:ville>Grenoble</ca:ville>
-            </ca:adresse>
-            
-            <ca:visite date="2015-12-08" intervenant="001">
-                <ca:acte id="102"/>
-            </ca:visite>
-        </ca:patient>
-        
-        <ca:patient>
-            <!-- Elvire est née le 08 mars 82 en France, à Lyon (n° 23 dans le rhône), il s’agissait de la 52e
+      </ca:adresse>
+      <ca:visite date="2015-12-08" intervenant="001">
+        <ca:acte id="102" />
+      </ca:visite>
+    </ca:patient>
+    <ca:patient>
+      <!-- Elvire est née le 08 mars 82 en France, à Lyon (n° 23 dans le rhône), il s’agissait de la 52e
                 naissance dans cette ville -->
-            <ca:nom>Orouge</ca:nom>
-            <ca:prénom>Elvire</ca:prénom>
-            <ca:sexe>F</ca:sexe>
-            <ca:naissance>1982-03-08</ca:naissance>
-            
-            <ca:adresse>
-                <ca:étage>6</ca:étage>
-                <ca:rue>Rond-Point de la Croix de Vie</ca:rue>
-                <ca:codePostal>38700</ca:codePostal>
-                <ca:ville>La Tronche</ca:ville>
-            </ca:adresse>
-            
-            <ca:visite date="2015-12-08">
-                <ca:acte id="110"/>
-            </ca:visite>
-            
-        </ca:patient>
-        
-        <ca:patient>
-            <!-- Oscare est née le 25 mars 75 en France, à Chambéry (n° 65 dans la Savoie) Il s’agissait de la
+      <ca:nom>Orouge</ca:nom>
+      <ca:prénom>Elvire</ca:prénom>
+      <ca:sexe>F</ca:sexe>
+      <ca:naissance>1982-03-08</ca:naissance>
+      <ca:numéro>282030805545890</ca:numéro>
+      <ca:adresse>
+        <ca:étage>6</ca:étage>
+        <ca:rue>Rond-Point de la Croix de Vie</ca:rue>
+        <ca:codePostal>38700</ca:codePostal>
+        <ca:ville>La Tronche</ca:ville>
+      </ca:adresse>
+      <ca:visite date="2015-12-08">
+        <ca:acte id="110" />
+      </ca:visite>
+    </ca:patient>
+    <ca:patient>
+      <!-- Oscare est née le 25 mars 75 en France, à Chambéry (n° 65 dans la Savoie) Il s’agissait de la
                 692e naissance. -->
-            <ca:nom>Pien</ca:nom>
-            <ca:prénom>Oscare</ca:prénom>
-            <ca:sexe>F</ca:sexe>
-            <ca:naissance>1975-03-25</ca:naissance>
-            
-            <ca:adresse>
-                <ca:rue>rue Casimir Brenier</ca:rue>
-                <ca:codePostal>38000</ca:codePostal>
-                <ca:ville>Grenoble</ca:ville>
-            </ca:adresse>
-            
-            <ca:visite date="2015-12-08">
-                <ca:acte id="111"/>
-            </ca:visite>
-            
-        </ca:patient>
-        
-        <ca:patient>
-            <!-- Xavier est un petit garçon de 4 ans, né le 02 août 2011 en France, à Bordeaux (n° 63 dans la
+      <ca:nom>Pien</ca:nom>
+      <ca:prénom>Oscare</ca:prénom>
+      <ca:sexe>F</ca:sexe>
+      <ca:naissance>1975-03-25</ca:naissance>
+      <ca:numéro>275032505545890</ca:numéro>
+      <ca:adresse>
+        <ca:rue>rue Casimir Brenier</ca:rue>
+        <ca:codePostal>38000</ca:codePostal>
+        <ca:ville>Grenoble</ca:ville>
+      </ca:adresse>
+      <ca:visite date="2015-12-08">
+        <ca:acte id="111" />
+      </ca:visite>
+    </ca:patient>
+    <ca:patient>
+      <!-- Xavier est un petit garçon de 4 ans, né le 02 août 2011 en France, à Bordeaux (n° 63 dans la
                 Gironde). Il s’agit de la 35e naissance. -->
-            <ca:nom>Kapoëtla</ca:nom>
-            <ca:prénom>Xavier</ca:prénom>
-            <ca:sexe>M</ca:sexe>
-            <ca:naissance>2011-08-02</ca:naissance>
-            
-            <ca:adresse>
-                <ca:numéro>25</ca:numéro>
-                <ca:rue>rue des Martyrs</ca:rue>
-                <ca:codePostal>38042</ca:codePostal>
-                <ca:ville>Grenoble</ca:ville>
-            </ca:adresse>
-            
-            <ca:visite date="2015-12-08">
-                <ca:acte id="102"/>
-            </ca:visite>
-            
-        </ca:patient>
-
-        <ca:patient>
-            <ca:nom>Pourferlavésel</ca:nom>
-            <ca:prénom>Vladimir</ca:prénom>
-            <ca:sexe>M</ca:sexe>
-            <ca:naissance>1985-05-30</ca:naissance>
-            <ca:numéro>185057800608491</ca:numéro>
-            <ca:adresse>
-                <ca:rue>Les morets</ca:rue>
-                <ca:codePostal>38112</ca:codePostal>
-                <ca:ville>Méaudre</ca:ville>
-            </ca:adresse>
-
-            <ca:visite date="2017-12-11" intervenant="001">
-                <ca:acte id="101"/>
-            </ca:visite>
-
-            <ca:visite date="2017-12-08" intervenant="001">
-                <ca:acte id="102"/>
-            </ca:visite>
-
-        </ca:patient>
-        
-    </ca:patients>
-    
+      <ca:nom>Kapoëtla</ca:nom>
+      <ca:prénom>Xavier</ca:prénom>
+      <ca:sexe>M</ca:sexe>
+      <ca:naissance>2011-08-02</ca:naissance>
+      <ca:numéro>211080205545890</ca:numéro>
+      <ca:adresse>
+        <ca:numéro>25</ca:numéro>
+        <ca:rue>rue des Martyrs</ca:rue>
+        <ca:codePostal>38042</ca:codePostal>
+        <ca:ville>Grenoble</ca:ville>
+      </ca:adresse>
+      <ca:visite date="2015-12-08">
+        <ca:acte id="102" />
+      </ca:visite>
+    </ca:patient>
+    <ca:patient>
+      <ca:nom>Pourferlavésel</ca:nom>
+      <ca:prénom>Vladimir</ca:prénom>
+      <ca:sexe>M</ca:sexe>
+      <ca:naissance>1985-05-30</ca:naissance>
+      <ca:numéro>185057800608491</ca:numéro>
+      <ca:adresse>
+        <ca:rue>Les morets</ca:rue>
+        <ca:codePostal>38112</ca:codePostal>
+        <ca:ville>Méaudre</ca:ville>
+      </ca:adresse>
+      <ca:visite date="2017-12-11" intervenant="001">
+        <ca:acte id="101" />
+      </ca:visite>
+      <ca:visite date="2017-12-08" intervenant="001">
+        <ca:acte id="102" />
+      </ca:visite>
+    </ca:patient>
+    <ca:patient>
+      <ca:nom>Némard</ca:nom>
+      <ca:prénom>Jean</ca:prénom>
+      <ca:sexe>M</ca:sexe>
+      <ca:naissance>1998-08-25</ca:naissance>
+      <ca:numéro>198082205545843</ca:numéro>
+      <ca:adresse>
+        <ca:étage>1</ca:étage>
+        <ca:numéro>1</ca:numéro>
+        <ca:rue>rue de la rue</ca:rue>
+        <ca:codePostal>38000</ca:codePostal>
+        <ca:ville>Grenoble</ca:ville>
+      </ca:adresse>
+    </ca:patient>
+  </ca:patients>
 </ca:cabinet>

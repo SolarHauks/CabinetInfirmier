@@ -23,13 +23,7 @@
             <pat:prénom><xsl:value-of select="$patient/ci:prénom"/></pat:prénom>
             <pat:sexe><xsl:value-of select="$patient/ci:sexe"/></pat:sexe>
             <pat:naissance><xsl:value-of select="$patient/ci:naissance"/></pat:naissance>
-            <xsl:choose> <!-- optionalElement -->
-                <xsl:when test="$patient/ci:numéro">
-                    <pat:numéroSS>
-                        <xsl:value-of select="$patient/ci:numéro"/>
-                    </pat:numéroSS>
-                </xsl:when>
-            </xsl:choose>
+            <pat:numéroSS><xsl:value-of select="$patient/ci:numéro"/></pat:numéroSS>
             
             <xsl:apply-templates select="$patient/ci:adresse"/> <!-- Affiche l'adresse du patient -->
             
