@@ -213,36 +213,36 @@ public class Cabinet
         XmlElement adresseElement = doc.CreateElement("ca:adresse", nsmgr.LookupNamespace("ca"));
             
         // Ajout de l'etage
-        if (adresse.etage != null)
+        if (adresse.Etage != null)
         {
             XmlElement etageElement = doc.CreateElement("ca:étage", nsmgr.LookupNamespace("ca"));
-            etageElement.InnerText = adresse.etage.ToString();
+            etageElement.InnerText = adresse.Etage.ToString();
             adresseElement.AppendChild(etageElement);
         }
         
         // Ajout du numero
-        if (adresse.numero != null)
+        if (adresse.Numero != null)
         {
             XmlElement numeroElement = doc.CreateElement("ca:numéro", nsmgr.LookupNamespace("ca"));
-            numeroElement.InnerText = adresse.numero.ToString();
+            numeroElement.InnerText = adresse.Numero.ToString();
             adresseElement.AppendChild(numeroElement);
         }
         
         // Ajout de la rue
         XmlElement rueElement = doc.CreateElement("ca:rue", nsmgr.LookupNamespace("ca"));
-        rueElement.InnerText = adresse.rue;
+        rueElement.InnerText = adresse.Rue;
         adresseElement.AppendChild(rueElement);
         
         // Ajout du code postal
         XmlElement codePostalElement = doc.CreateElement("ca:codePostal", nsmgr.LookupNamespace("ca"));
-        codePostalElement.InnerText = adresse.codePostal.ToString();
+        codePostalElement.InnerText = adresse.CodePostal.ToString();
         adresseElement.AppendChild(codePostalElement);
         
         // Ajout de la ville
-        if (adresse.ville != null)
+        if (adresse.Ville != null)
         {
             XmlElement villeElement = doc.CreateElement("ca:ville", nsmgr.LookupNamespace("ca"));
-            villeElement.InnerText = adresse.ville;
+            villeElement.InnerText = adresse.Ville;
             adresseElement.AppendChild(villeElement);
         }
         

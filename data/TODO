@@ -3,4 +3,6 @@ A faire / a finir :
 - Completer facture (optionnel, voir 6.2.1 - e)
 
 
-Test de pull
+A demander :
+- Pour passer une classe en non modifiables, vaut-il mieux passer toutes les propriétés
+    en init/get, ou bien déclarer les propriétés en readonly (avec juste get donc) ?

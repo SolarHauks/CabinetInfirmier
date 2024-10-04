@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ca:adresse xmlns:ca="http://www.univ-grenoble-alpes.fr/l3miage/medical" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
+    
+    <ca:étage>6</ca:étage>
+    <ca:numéro>50</ca:numéro>
+    <ca:rue>avenue Felix Viallet</ca:rue>
+    <ca:codePostal>38031</ca:codePostal>
+    <ca:ville>Grenoble</ca:ville>
+</ca:adresse>

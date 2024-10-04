@@ -12,6 +12,10 @@
         </keyref>
     </element>
 
+    <!-- Elements racines pour la sérialisation -->
+    <element name="adresse" type="ci:Adresse"/>
+    <element name="infirmiers" type="ci:Infirmiers"/>
+
     <!--*****************************       Implementation des Complex Type       *****************************-->
     
     <!-- Type Cabinet  -->

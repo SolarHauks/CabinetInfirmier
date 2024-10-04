@@ -13,7 +13,7 @@
             // XMLUtils.XslTransform("../../../data/xml/cabinet.xml", "../../../data/xslt/infirmiere.xslt", "../../../data/html/output.html");
             // XMLUtils.XslTransform("../../../data/xml/cabinet.xml", "../../../data/xslt/extractionPatient.xslt", "../../../data/xml/Pourferlavésel.xml");
             
-            Cabinet cabinet = new Cabinet();
+            // Cabinet cabinet = new Cabinet();
             
             // cabinet.AnalyseGlobale("../../../data/xml/cabinet.xml");
             
@@ -36,7 +36,15 @@
             // Adresse adresse = new Adresse(1, 1, "rue de la rue", 38000, "Grenoble");
             // cabinet.AddPatient("Jean", "Némard", "M", "1998-08-25", "198082205545843", adresse); // Ajout d'un nouveau patient
             
-            cabinet.AddVisit("198082205545843", "001", ["001"], "2017-09-01");
+            // cabinet.AddVisit("198082205545843", "001", ["001"], "2017-09-01");
+            
+            // SERIALIZATION
+            XMLManager<Infirmiers> Seri = new XMLManager<Infirmiers>();
+            Infirmiers chaine = Seri.Load("../../../data/xml/infirmiers.xml");
+            Console.WriteLine(chaine.ToString());
+            
+            // DESERIALIZATION
+            Seri.Save("../../../data/xml/infirmiers2.xml", chaine);
         }
     }
 }
