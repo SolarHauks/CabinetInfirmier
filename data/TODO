@@ -1,8 +1,0 @@
-A faire / a finir :
-- Finir les CV persos
-- Completer facture (optionnel, voir 6.2.1 - e)
-
-
-A demander :
-- Pour passer une classe en non modifiables, vaut-il mieux passer toutes les propriétés
-    en init/get, ou bien déclarer les propriétés en readonly (avec juste get donc) ?

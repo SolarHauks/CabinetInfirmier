@@ -7,14 +7,14 @@ namespace CabinetInfirmier;
 [Serializable]
 public class Adresse
 {
-    private int? etage;
-    private int? numero;
+    private int etage;
+    private int numero;
     private string rue;
     private int codePostal;
-    private string? ville;
+    private string ville;
 
     [XmlElement("étage")]
-    public int? Etage
+    public int Etage
     {
         get => etage;
         set
@@ -26,7 +26,7 @@ public class Adresse
     }
 
     [XmlElement("numéro")]
-    public int? Numero
+    public int Numero
     {
         get => numero;
         set
@@ -64,7 +64,7 @@ public class Adresse
     }
 
     [XmlElement("ville")]
-    public string? Ville
+    public string Ville
     {
         get => ville;
         set
@@ -77,7 +77,7 @@ public class Adresse
         }
     }
 
-    public Adresse(int? etage, int? numero, string rue, int codePostal, string? ville)
+    public Adresse(int etage, int numero, string rue, int codePostal, string ville)
     {
         Etage = etage;
         Numero = numero;
@@ -97,6 +97,6 @@ public class Adresse
 
     public override string ToString()
     {
-        return "(" + Etage + " étage, " + Numero + " " + Rue + ", " + CodePostal + " " + Ville + ")\n";
+        return (Etage != 0 ? Etage + " étage, " : "") + (Numero != 0 ? Numero + " " : "") + Rue + ", " + CodePostal + " " + Ville + "\n";
     }
 }

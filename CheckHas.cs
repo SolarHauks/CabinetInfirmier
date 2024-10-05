@@ -33,12 +33,13 @@ public class CheckHas
 
         XmlNodeList addressNodes = doc.SelectNodes("//ca:" + elementName + "/ca:adresse", nsmgr); // Selectionne tous les noeuds adresse
 
-        // Pour chaque noeud adresse, vérifie si il est complet (ie. contient 5 éléments)
+        // Pour chaque noeud adresse, vérifie si il est complet (ie. si il contient au moins une rue et un code postal)
         foreach (XmlNode addressNode in addressNodes)
         {
-            if (addressNode.ChildNodes.Count != 5)
+            if (addressNode.SelectNodes("ca:rue", nsmgr).Count == 0 || addressNode.SelectNodes("ca:codePostal", nsmgr).Count == 0)
             {
-                return false; // Si un noeud adresse ne contient pas exactement 5 éléments, retourne faux
+                Console.WriteLine("Adresse incomplète : {0}", addressNode.ParentNode.Name);
+                return false; // Si un noeud adresse n'est pas complet, retourne faux
             }
         }
 
@@ -46,7 +47,7 @@ public class CheckHas
     }
 
     // Vérifie qu'un numéro de sécurité sociale est valide
-    public bool NSSValide(string nss, int anneeNaissance, int moisNaissance, char Sexe)
+    public bool NSSValide(string nss, int anneeNaissance, int moisNaissance, string sexe)
     {
         // Vérifie que le numéro de sécurité sociale est composé de 15 chiffres
         if (nss.Length != 15)
@@ -64,7 +65,7 @@ public class CheckHas
         }
         
         int sexeDigit = int.Parse(nss.Substring(0, 1));
-        if (!((sexeDigit == 1 && Sexe == 'M') || (sexeDigit == 2 && Sexe == 'F') || (sexeDigit == 3 || sexeDigit == 4 || sexeDigit == 7 || sexeDigit == 8)))
+        if (!((sexeDigit == 1 && sexe == "M") || (sexeDigit == 2 && sexe == "F") || (sexeDigit == 3 || sexeDigit == 4 || sexeDigit == 7 || sexeDigit == 8)))
         {
             Console.WriteLine("Erreur de sexe, nss : {0}", nss);
             return false;
@@ -119,7 +120,7 @@ public class CheckHas
             string nss = patientNode.SelectSingleNode("ca:numéro", nsmgr).InnerText;
             int anneeNaissance = int.Parse(patientNode.SelectSingleNode("ca:naissance", nsmgr).InnerText.Substring(0, 4));
             int moisNaissance = int.Parse(patientNode.SelectSingleNode("ca:naissance", nsmgr).InnerText.Substring(5, 2));
-            char sexe = char.Parse(patientNode.SelectSingleNode("ca:sexe", nsmgr).InnerText);
+            string sexe = patientNode.SelectSingleNode("ca:sexe", nsmgr).InnerText;
             if (!NSSValide(nss, anneeNaissance, moisNaissance, sexe))
             {
                 return false; // Si un numéro de sécurité sociale n'est pas valide, retourne faux

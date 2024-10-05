@@ -56,7 +56,7 @@
       <ca:prénom>Elvire</ca:prénom>
       <ca:sexe>F</ca:sexe>
       <ca:naissance>1982-03-08</ca:naissance>
-      <ca:numéro>282030805545890</ca:numéro>
+      <ca:numéro>282030805545808</ca:numéro>
       <ca:adresse>
         <ca:étage>6</ca:étage>
         <ca:rue>Rond-Point de la Croix de Vie</ca:rue>
@@ -74,7 +74,7 @@
       <ca:prénom>Oscare</ca:prénom>
       <ca:sexe>F</ca:sexe>
       <ca:naissance>1975-03-25</ca:naissance>
-      <ca:numéro>275032505545890</ca:numéro>
+      <ca:numéro>275032505545886</ca:numéro>
       <ca:adresse>
         <ca:rue>rue Casimir Brenier</ca:rue>
         <ca:codePostal>38000</ca:codePostal>
@@ -91,7 +91,7 @@
       <ca:prénom>Xavier</ca:prénom>
       <ca:sexe>M</ca:sexe>
       <ca:naissance>2011-08-02</ca:naissance>
-      <ca:numéro>211080205545890</ca:numéro>
+      <ca:numéro>111080205545893</ca:numéro>
       <ca:adresse>
         <ca:numéro>25</ca:numéro>
         <ca:rue>rue des Martyrs</ca:rue>
@@ -133,9 +133,6 @@
         <ca:codePostal>38000</ca:codePostal>
         <ca:ville>Grenoble</ca:ville>
       </ca:adresse>
-      <ca:visite intervenant="001" date="2017-09-01">
-        <ca:acte id="001" />
-      </ca:visite>
       <ca:visite intervenant="001" date="2017-09-01">
         <ca:acte id="001" />
       </ca:visite>
