@@ -1,5 +1,4 @@
 using System.Xml;
-using System.Xml.XPath;
 
 namespace CabinetInfirmier;
 
@@ -22,7 +21,7 @@ public class CheckHas
     }
 
     // Vérifie si tous les éléments du nom donné ont un élément adresse complet
-    public bool hasAdresse(string elementName)
+    public bool HasAdresse(string elementName)
     {
         string xmlFilePath = "../../../data/xml/cabinet.xml"; // Chemin du fichier XML
         XmlDocument doc = new XmlDocument();
@@ -47,7 +46,7 @@ public class CheckHas
     }
 
     // Vérifie qu'un numéro de sécurité sociale est valide
-    public bool NSSValide(string nss, int anneeNaissance, int moisNaissance, string sexe)
+    public bool NssValide(string nss, int anneeNaissance, int moisNaissance, string sexe)
     {
         // Vérifie que le numéro de sécurité sociale est composé de 15 chiffres
         if (nss.Length != 15)
@@ -103,7 +102,7 @@ public class CheckHas
     }
     
     // Vérifie si tous les numéros de sécurité sociale sont valides
-    public bool AllNSSValide()
+    public bool AllNssValide()
     {
         string xmlFilePath = "../../../data/xml/cabinet.xml"; // Chemin du fichier XML
         XmlDocument doc = new XmlDocument();
@@ -121,7 +120,7 @@ public class CheckHas
             int anneeNaissance = int.Parse(patientNode.SelectSingleNode("ca:naissance", nsmgr).InnerText.Substring(0, 4));
             int moisNaissance = int.Parse(patientNode.SelectSingleNode("ca:naissance", nsmgr).InnerText.Substring(5, 2));
             string sexe = patientNode.SelectSingleNode("ca:sexe", nsmgr).InnerText;
-            if (!NSSValide(nss, anneeNaissance, moisNaissance, sexe))
+            if (!NssValide(nss, anneeNaissance, moisNaissance, sexe))
             {
                 return false; // Si un numéro de sécurité sociale n'est pas valide, retourne faux
             }

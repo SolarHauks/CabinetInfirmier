@@ -4,7 +4,7 @@ using System.Xml.Schema;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 
-public class XMLUtils
+public static class XMLUtils
 {
     public static Task ValidateXmlFile (string schemaNamespace, string xsdFilePath, string xmlFilePath) {
         var settings = new XmlReaderSettings();

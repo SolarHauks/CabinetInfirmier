@@ -1,1 +1,26 @@
-﻿<pat:patient xmlns:pat="http://www.univ-grenoble-alpes.fr/l3miage/patient" xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical" xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes"><pat:nom>Pourferlavésel</pat:nom><pat:prénom>Vladimir</pat:prénom><pat:sexe>M</pat:sexe><pat:naissance>1942-12-30</pat:naissance><pat:numéroSS>198082205545842</pat:numéroSS><pat:adresse><pat:rue>Les morets</pat:rue><pat:codePostal>38112</pat:codePostal><pat:ville>Méaudre</pat:ville></pat:adresse><pat:visite date="2017-12-11"><pat:intervenant><pat:nom>Frechie</pat:nom><pat:prénom>Sarah</pat:prénom></pat:intervenant><pat:acte>Prélèvement par ponction veineuse directe. </pat:acte></pat:visite><pat:visite date="2017-12-08"><pat:intervenant><pat:nom>Frechie</pat:nom><pat:prénom>Sarah</pat:prénom></pat:intervenant><pat:acte>Saignée. </pat:acte></pat:visite></pat:patient>
+<?xml version="1.0" encoding="UTF-8"?><pat:patient xmlns:act="http://www.univ-grenoble-alpes.fr/l3miage/actes" xmlns:pat="http://www.univ-grenoble-alpes.fr/l3miage/patient" xmlns:ci="http://www.univ-grenoble-alpes.fr/l3miage/medical">
+    <pat:nom>Pourferlavésel</pat:nom>
+    <pat:prénom>Vladimir</pat:prénom>
+    <pat:sexe>M</pat:sexe>
+    <pat:naissance>1985-05-30</pat:naissance>
+    <pat:numéroSS>185057800608491</pat:numéroSS>
+    <pat:adresse>
+        <pat:rue>Les morets</pat:rue>
+        <pat:codePostal>38112</pat:codePostal>
+        <pat:ville>Méaudre</pat:ville>
+    </pat:adresse>
+    <pat:visite date="2017-12-11">
+        <pat:intervenant>
+            <pat:nom>Frechie</pat:nom>
+            <pat:prénom>Sarah</pat:prénom>
+        </pat:intervenant>
+        <pat:acte>Prélèvement par ponction veineuse directe. </pat:acte>
+    </pat:visite>
+    <pat:visite date="2017-12-08">
+        <pat:intervenant>
+            <pat:nom>Frechie</pat:nom>
+            <pat:prénom>Sarah</pat:prénom>
+        </pat:intervenant>
+        <pat:acte>Saignée. </pat:acte>
+    </pat:visite>
+</pat:patient>

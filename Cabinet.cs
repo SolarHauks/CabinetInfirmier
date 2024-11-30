@@ -3,8 +3,8 @@ using System.Xml.Serialization;
 
 namespace CabinetInfirmier;
 
-[XmlRoot("cabinet", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/medical")]
 [Serializable]
+[XmlRoot("cabinet", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/medical")]
 public class Cabinet
 {
     private string nom;

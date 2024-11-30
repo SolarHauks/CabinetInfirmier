@@ -13,8 +13,6 @@ public class Patient
     private string numSecu;
     
     private Adresse adresse;
-    private Visite visite;
-
 
     [XmlElement("nom")]
     public string Nom
@@ -71,7 +69,7 @@ public class Patient
         set
         {
             CheckHas check = new CheckHas();
-            if (value != "000000000000000" && !check.NSSValide(value, Naissance.Year, Naissance.Month, Sexe))
+            if (value != "000000000000000" && !check.NssValide(value, Naissance.Year, Naissance.Month, Sexe))
                 throw new ArgumentException("Le numéro de sécurité sociale n'est pas valide");
             numSecu = value;
         }
@@ -82,6 +80,7 @@ public class Patient
     {
         get => adresse;
         set => adresse = value;
+        // adresse vlide
     }
 
     public Patient(string nom, string prenom, string sexe, DateTime naissance, string numSecu, Adresse adresse)

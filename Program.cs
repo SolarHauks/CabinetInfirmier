@@ -39,8 +39,8 @@
             // cabinet.AddVisit("198082205545843", "001", ["001"], "2017-09-01");
             
             // SERIALIZATION
-            XMLManager<Cabinet> Seri = new XMLManager<Cabinet>();
-            Cabinet chaine = Seri.Load("../../../data/xml/cabinet.xml");
+            XMLManager<Cabinet> seri = new XMLManager<Cabinet>();
+            Cabinet chaine = seri.Load("../../../data/xml/cabinet.xml");
             Console.WriteLine(chaine.ToString());
             
             // DESERIALIZATION

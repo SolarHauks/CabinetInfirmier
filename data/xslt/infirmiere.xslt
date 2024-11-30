@@ -51,7 +51,12 @@
                 <!-- Bouton pour la facturation. 
                 Au click appelle la fonction openFacture(prénom, nom, actes) présente dans le fichier facture.js -->
                 <xsl:element name="button">
-                    <xsl:attribute name="onclick">openFacture('<xsl:value-of select="ci:prénom"/>','<xsl:value-of select="ci:nom"/>', '<xsl:value-of select="ci:visite/ci:acte"/>')</xsl:attribute >
+                    <xsl:attribute name="onclick">openFacture('<xsl:value-of select="ci:prénom"/>','<xsl:value-of select="ci:nom"/>', '<xsl:for-each select="ci:visite[@intervenant=$destinedId]/ci:acte">
+                        <xsl:value-of select="@id"/>
+                        <xsl:if test="position() != last()">
+                            <xsl:text> </xsl:text>
+                        </xsl:if>
+                    </xsl:for-each>')</xsl:attribute >
                     Facture
                 </xsl:element>
             </td>

@@ -12,14 +12,14 @@ public class XMLManager<T>
     // --- unmarshalling - désérialisation --- (XML -> Object)
     public T Load(string path)
     {
-        T _instance;
+        T instance;
         using (TextReader reader = new StreamReader(path))
         {
             var xml = new XmlSerializer(typeof(T));
-            _instance = (T)xml.Deserialize(reader);
+            instance = (T)xml.Deserialize(reader);
         }
 
-        return _instance;
+        return instance;
     }
 
     // --- marshalling - sérialisation --- (Object -> XML)

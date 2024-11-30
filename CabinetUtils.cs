@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -210,7 +209,7 @@ public class CabinetUtils
         // Ajout du NSS
         XmlElement nssElement = doc.CreateElement("ca:numéro", nsmgr.LookupNamespace("ca"));
         CheckHas check = new CheckHas();
-        if (!check.NSSValide(nss, dateNaissance.Year, dateNaissance.Month, sexe)) // Vérification du NSS
+        if (!check.NssValide(nss, dateNaissance.Year, dateNaissance.Month, sexe)) // Vérification du NSS
         {
             throw new Exception("Le NSS n'est pas valide");
         }
@@ -264,7 +263,7 @@ public class CabinetUtils
     }
     
     // Ajoute une visite à un patient
-    public void AddVisit(string patientNSS, string nurseId, string[] acteId, string date)
+    public void AddVisit(string patientNss, string nurseId, string[] acteId, string date)
     {
         // Chargement du document xml
         XmlDocument doc = new XmlDocument();
@@ -300,7 +299,7 @@ public class CabinetUtils
         XmlNodeList patientNodes = doc.SelectNodes("//ca:patient", nsmgr);
         int i = 0;
         while (i < patientNodes.Count 
-               && patientNodes[i].SelectSingleNode("ca:numéro", nsmgr).InnerText != patientNSS)
+               && patientNodes[i].SelectSingleNode("ca:numéro", nsmgr).InnerText != patientNss)
         {
             i++;
         }
