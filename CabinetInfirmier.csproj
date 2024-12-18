@@ -8,13 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="data\xslt\affichagePatient.xslt">
+      <None Update="data\xslt\patient_html.xslt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="data\xslt\extractionPatient.xslt">
+      <None Update="data\xslt\patient_xml.xslt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="data\xslt\infirmiere.xslt">
+      <None Update="data\xslt\cabinet.xslt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="data\xsd\patient.xsd">
