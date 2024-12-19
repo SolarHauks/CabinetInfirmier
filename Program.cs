@@ -25,9 +25,10 @@
             
             // Console.WriteLine(cabinet.TotalActes("../../../data/xml/cabinet.xml"));
             
-            // CheckHas checkHas = new CheckHas();
+            CheckHas checkHas = new CheckHas();
             // Console.WriteLine(checkHas.Count("patient")); // affiche le nombre de patient
-            // Console.WriteLine(checkHas.hasAdresse("cabinet")); // affiche si tous les infirmiers ont une adresse
+            Console.WriteLine(checkHas.HasAdresse("cabinet")); // affiche si le cabinet contient bien une adresse
+            Console.WriteLine(checkHas.HasAdresse("patient")); // affiche si tout les patients contiennent bien une adresse
             // Console.WriteLine(checkHas.NSSValide("198082205545843", 1998, 08, 'M')); // affiche si le NSS est valide
             // Console.WriteLine(checkHas.AllNSSValide()); // affiche si tous les NSS sont valides
             
@@ -39,9 +40,9 @@
             // cabinet.AddVisit("198082205545843", "001", ["001"], "2017-09-01");
             
             // SERIALIZATION
-            XMLManager<Cabinet> seri = new XMLManager<Cabinet>();
-            Cabinet chaine = seri.Load("../../../data/xml/cabinet.xml");
-            Console.WriteLine(chaine.ToString());
+            // XMLManager<Cabinet> seri = new XMLManager<Cabinet>();
+            // Cabinet chaine = seri.Load("../../../data/xml/cabinet.xml");
+            // Console.WriteLine(chaine.ToString());
             
             // DESERIALIZATION
            // Seri.Save("../../../data/xml/infirmiers2.xml", chaine);

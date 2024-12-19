@@ -20,6 +20,22 @@ public class CheckHas
         return nodes.Count; // Retourne le nombre d'éléments trouvés
     }
 
+    
+    
+    // Vérifie si un élément du nom donné existe dans le fichier XML
+    public bool ElementExists(string elementName)
+    {
+        string xmlFilePath = "../../../data/xml/cabinet.xml"; // Chemin du fichier XML
+        XmlDocument doc = new XmlDocument();
+        doc.Load(xmlFilePath);
+
+        XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+        nsmgr.AddNamespace("ca", "http://www.univ-grenoble-alpes.fr/l3miage/medical");
+
+        XmlNode node = doc.SelectSingleNode("//ca:" + elementName, nsmgr);
+        return node != null;
+    }
+    
     // Vérifie si tous les éléments du nom donné ont un élément adresse complet
     public bool HasAdresse(string elementName)
     {
@@ -29,9 +45,23 @@ public class CheckHas
 
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
         nsmgr.AddNamespace("ca", "http://www.univ-grenoble-alpes.fr/l3miage/medical");
+        
+        if (!ElementExists(elementName))
+        {
+            throw new ArgumentException("L'élément spécifié n'existe pas dans le fichier XML.");
+        }
+        
+        
 
         XmlNodeList addressNodes = doc.SelectNodes("//ca:" + elementName + "/ca:adresse", nsmgr); // Selectionne tous les noeuds adresse
 
+        
+        if (addressNodes.Count == 0)
+        {
+            throw new ArgumentException("L'élément spécifié ne contient pas d'adresse.");
+        }
+        
+        
         // Pour chaque noeud adresse, vérifie si il est complet (ie. si il contient au moins une rue et un code postal)
         foreach (XmlNode addressNode in addressNodes)
         {
