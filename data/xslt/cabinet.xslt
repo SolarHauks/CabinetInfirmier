@@ -17,7 +17,7 @@
             <head>
                 <title> Cabinet Infirmier </title>
                 <meta charset="utf-8"/>
-                <script type="text/javascript" src="../js/facture.js"><xsl:text> </xsl:text></script> <!-- Script pour la facturation -->
+                <script type="text/javascript" src="../js/buttonScript.js"><xsl:text> </xsl:text></script> <!-- Script pour la facturation -->
                 <link rel="stylesheet" href="../css/infirmiere.css"/> <!-- Feuille de style -->
             </head>
             <body> 

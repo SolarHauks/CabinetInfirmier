@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ca:cabinet xmlns:ca="http://www.univ-grenoble-alpes.fr/l3miage/medical" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
+<ca:cabinet xmlns:ca="http://www.univ-grenoble-alpes.fr/l3miage/medical" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/medical ../xsd/cabinet.xsd">
     <!-- Données du cabinet médical -->
     <ca:nom>Soins a Grenoble</ca:nom>
     <ca:adresse>
