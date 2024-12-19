@@ -46,17 +46,14 @@ public class CheckHas
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
         nsmgr.AddNamespace("ca", "http://www.univ-grenoble-alpes.fr/l3miage/medical");
         
-        if (!ElementExists(elementName))
+        if (!ElementExists(elementName)) // Vérifie si l'élément spécifié existe
         {
             throw new ArgumentException("L'élément spécifié n'existe pas dans le fichier XML.");
         }
         
-        
-
         XmlNodeList addressNodes = doc.SelectNodes("//ca:" + elementName + "/ca:adresse", nsmgr); // Selectionne tous les noeuds adresse
-
         
-        if (addressNodes.Count == 0)
+        if (addressNodes.Count == 0) // Vérifie si l'élément spécifié contient une adresse
         {
             throw new ArgumentException("L'élément spécifié ne contient pas d'adresse.");
         }
